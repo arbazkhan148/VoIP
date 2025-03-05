@@ -11,6 +11,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::prefix('user')->name('user')->group(function(){
+    Route::middleware(['guest:web'])->group(function () {
+    });
+    Route::middleware(['auth:user'])->group(function () {
+    });
+});
+
 Route::prefix('seller')->name('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
     });
