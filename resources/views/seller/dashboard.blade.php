@@ -1,4 +1,4 @@
-@extends('layouts/distributorlayout')
+@extends('seller.layouts.layout')
 @section('content')
     <main id="main" class="main">
 
