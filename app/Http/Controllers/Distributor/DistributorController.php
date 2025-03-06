@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class DistributorController extends Controller
 {
     public function dashboard(){
-        return view('distributor.distributor');
+        return view('distributor.dashboard');
     }
 
     public function register(){
