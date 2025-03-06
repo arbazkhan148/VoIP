@@ -19,7 +19,7 @@ Route::prefix('user')->name('user')->group(function(){
     });
 });
 
-Route::prefix('seller')->name('seller')->group(function(){
+Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
         Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [SellerController::class, 'profile'])->name('profile');
@@ -27,6 +27,7 @@ Route::prefix('seller')->name('seller')->group(function(){
         Route::get('contact', [SellerController::class, 'contact'])->name('contact');
     });
     Route::middleware(['auth:seller'])->group(function () {
+        Route::get('logout', [SellerController::class, 'logout'])->name('logout');
     });
 });
 
