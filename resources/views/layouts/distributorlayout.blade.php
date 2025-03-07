@@ -279,7 +279,7 @@
             <li class="nav-item">
                 <a class="nav-link " href="{{ url('distributor/plans') }}">
                     <i class="bi bi-grid"></i>
-                    <span>Active Plans</span>
+                    <span>My Plans</span>
                 </a>
             </li><!-- End Active Plans Nav -->
 
