@@ -35,6 +35,7 @@ Route::prefix('distributor')->name('distributor')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
         Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
         Route::get('profile', [DistributorController::class, 'profile'])->name('distributor.profile');
+        Route::get('plans', [DistributorController::class, 'plans'])->name('distributor.plans');
         Route::get('register', [DistributorController::class, 'register'])->name('user.register');
         Route::get('contact', [DistributorController::class, 'contact'])->name('distributor.contact');
     });
