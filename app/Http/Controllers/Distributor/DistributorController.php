@@ -22,4 +22,8 @@ class DistributorController extends Controller
     public function profile(){
         return view('distributor.profile');
     }
+
+    public function plans(){
+        return view('distributor.plans');
+    }
 }
