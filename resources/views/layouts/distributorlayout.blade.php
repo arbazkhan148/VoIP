@@ -277,6 +277,13 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
+                <a class="nav-link " href="{{ url('distributor/plans') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Active Plans</span>
+                </a>
+            </li><!-- End Active Plans Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{url('distributor/profile')}}">
                     <i class="bi bi-person"></i>
                     <span>Profile</span>
