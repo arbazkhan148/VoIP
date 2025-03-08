@@ -213,7 +213,6 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -278,7 +277,7 @@
 
             <li class="nav-item">
                 <a class="nav-link " href="{{ url('distributor/plans') }}">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-pencil-square"></i>
                     <span>My Plans</span>
                 </a>
             </li><!-- End Active Plans Nav -->
