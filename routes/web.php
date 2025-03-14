@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Distributor\DistributorController;
 use App\Http\Controllers\Consumer\ConsumerController;
+use App\Http\Controllers\User\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,9 +15,16 @@ Auth::routes();
 
 Route::prefix('user')->name('user')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
+        Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+       // Route::get('register', [UserController::class, 'register'])->name('register');
+        Route::get('profile', [UserController::class, 'profile'])->name('profile');
+        Route::get('plan', [UserController::class, 'plan'])->name('user.plan');
+
+
     });
     Route::middleware(['auth:user'])->group(function () {
     });
+
 });
 
 Route::name('seller.')->prefix('seller')->group(function(){
