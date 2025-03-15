@@ -10,7 +10,7 @@ use App\Http\Controllers\ConsumerController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/web/register', [UserController::class, 'register'])->name('register');
+Route::get('web/register', [UserController::class, 'register'])->name('register');
 
 Auth::routes();
 

@@ -3,12 +3,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Tabs</h1>
+            <h1>My Plans</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Components</li>
-                    <li class="breadcrumb-item active">Tabs</li>
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Plans</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -53,12 +52,9 @@
                                     No Active Plans
                                 </div>
                             </div><!-- End Bordered Tabs Justified -->
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
@@ -67,53 +63,86 @@
                 <div class="card-body">
                     <h5 class="card-title">Buy Plans</h5>
 
-                    <!-- List group With badges -->
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            VoIP
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Buy Now
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">1 TB</a></li>
-                                    <li><a class="dropdown-item" href="#">2 TB</a></li>
-                                    <li><a class="dropdown-item" href="#">3 TB</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Cloud Storage
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Buy Now
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">1 TB</a></li>
-                                  <li><a class="dropdown-item" href="#">2 TB</a></li>
-                                  <li><a class="dropdown-item" href="#">3 TB</a></li>
-                                </ul>
-                              </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Hosting
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Buy Now
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">1 TB</a></li>
-                                  <li><a class="dropdown-item" href="#">2 TB</a></li>
-                                  <li><a class="dropdown-item" href="#">3 TB</a></li>
-                                </ul>
-                              </div>
-                        </li>
-                    </ul><!-- End List With badges -->
+                    <!-- First Row: VoIP -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-3">VoIP</div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option selected disabled>Choose Plan</option>
+                                <option>1000 Mins</option>
+                                <option>5000 Mins</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
 
+                    <!-- Second Row: Cloud Storage -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-3">Cloud Storage</div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option selected disabled>Choose Plan</option>
+                                <option>500 GB</option>
+                                <option>1 TB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Third Row: Hosting -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-3">Hosting</div>
+                        <div class="col-md-3">
+                            <select class="form-select">
+                                <option selected disabled>Choose Plan</option>
+                                <option>500 GB</option>
+                                <option>1 TB</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main><!-- End #main -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Handle the dropdown selections
+        document.querySelectorAll('.dropdown-menu a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const type = this.getAttribute('data-type');
+                const value = this.getAttribute('data-value');
+
+                // Hide all custom inputs first
+                document.querySelectorAll('.custom-input').forEach(input => input.classList.add('d-none'));
+
+                if (value === 'custom') {
+                    // Show the relevant custom input box
+                    document.getElementById(`custom-input-${type}`).classList.remove('d-none');
+                } else {
+                    alert(`You selected ${value} (${type})`);
+                }
+            });
+        });
+    </script>
 @endsection

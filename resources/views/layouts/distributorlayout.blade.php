@@ -292,7 +292,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('distributor/register') }}">
                     <i class="bi bi-card-list"></i>
-                    <span>Register</span>
+                    <span>Register User</span>
                 </a>
             </li><!-- End Register Page Nav -->
 
