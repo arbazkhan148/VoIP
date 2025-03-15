@@ -265,6 +265,44 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{request()->is('seller/distributor/*')? 'active' : '' }} collapsed" href="#" data-bs-target="#distributor-nav" data-bs-toggle="collapse">
+                <i class="bi bi-person"></i>
+                <span>Distributor</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="distributor-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
+                <li>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Add</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('seller.distributorlist')}}">
+                        <i class="bi bi-circle"></i><span>List</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{request()->is('seller/consumer/*')? 'active' : '' }} collapsed" href="#" data-bs-target="#consumer-nav" data-bs-toggle="collapse">
+                <i class="bi bi-person"></i>
+                <span>Consumer</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="consumer-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
+                <li>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Add</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('seller.consumerlist')}}">
+                        <i class="bi bi-circle"></i><span>List</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{request()->is('seller/profile')? 'active' : '' }}" href="{{url('seller/profile')}}">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
@@ -309,12 +347,10 @@
     <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/quill/quill.js') }}"></script>
     <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
+@yield('page-js')
 </body>
 
 </html>

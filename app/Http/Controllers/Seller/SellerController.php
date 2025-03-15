@@ -22,4 +22,13 @@ class SellerController extends Controller
     public function profile(){
         return view('seller.profile');
     }
+    public function distributorlist(){
+        return view('seller.distributorlist');
+    }
+    public function distributoradd(){
+        return view('seller.distributoradd');
+    }
+    public function consumerlist(){
+        return view('seller.consumerlist');
+    }
 }
