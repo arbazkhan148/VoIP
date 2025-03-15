@@ -272,7 +272,7 @@
             </a>
             <ul id="distributor-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li>
-                    <a href="#">
+                    <a href="{{route('seller.distributoradd')}}">
                         <i class="bi bi-circle"></i><span>Add</span>
                     </a>
                 </li>
