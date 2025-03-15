@@ -55,10 +55,22 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Address</textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    <select id="inputState" class="form-select">
-                                        <option>Choose Plan</option>
-                                        <option>1 TB</option>
+                                    <select id="planType" class="form-select">
+                                        <option value="">-- Select Plan Type --</option>
+                                        <option value="voip">VoIP</option>
+                                        <option value="cloud">Cloud Storage</option>
+                                        <option value="hosting">Hosting</option>
                                     </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <select id="planOption" class="form-select">
+                                        <option value="">-- Select Plan --</option>
+                                    </select>
+                                </div>
+                                <div id="customInputWrapper" class="mb-3 d-none">
+                                    <label for="customInput" class="form-label">Enter Custom Value:</label>
+                                    <input type="text" id="customInput" class="form-control"
+                                        placeholder="Enter your custom value">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -73,4 +85,49 @@
         </section>
 
     </main><!-- End #main -->
+
+    <script>
+        const planType = document.getElementById('planType');
+        const planOption = document.getElementById('planOption');
+        const customInputWrapper = document.getElementById('customInputWrapper');
+        const customInput = document.getElementById('customInput');
+
+        // Dropdown options
+        const options = {
+            voip: ['1000 Mins', '5000 Mins', 'Custom'],
+            cloud: ['500 GB', '1 TB', 'Custom'],
+            hosting: ['500 GB', '1 TB', 'Custom']
+        };
+
+        // Plan Type change event
+        planType.addEventListener('change', function() {
+            const selectedType = this.value;
+
+            // Reset Plan dropdown and hide custom input
+            planOption.innerHTML = '<option value="">-- Select Plan --</option>';
+            customInputWrapper.classList.add('d-none');
+            customInput.value = '';
+
+            if (options[selectedType]) {
+                options[selectedType].forEach(function(plan) {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = plan.toLowerCase().replace(/\s+/g, '_');
+                    optionElement.text = plan;
+                    planOption.appendChild(optionElement);
+                });
+            }
+        });
+
+        // Plan Option change event
+        planOption.addEventListener('change', function() {
+            const selectedPlan = this.value;
+
+            if (selectedPlan === 'custom') {
+                customInputWrapper.classList.remove('d-none');
+            } else {
+                customInputWrapper.classList.add('d-none');
+                customInput.value = '';
+            }
+        });
+    </script>
 @endsection
