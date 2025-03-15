@@ -2,11 +2,11 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Add Distributor</h1>
+            <h1>Add Consumer</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Dashboard</li>
-                    <li class="breadcrumb-item active">Add Distributor</li>
+                    <li class="breadcrumb-item active">Add Consumer</li>
                 </ol>
             </nav>
         </div>
@@ -16,7 +16,7 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">User Registration Form</h5>
+                                <h5 class="card-title">Consumer Registration Form</h5>
 
                                 <!-- No Labels Form -->
                                 <form class="row g-3">

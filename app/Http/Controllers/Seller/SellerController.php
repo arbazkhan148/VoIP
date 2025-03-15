@@ -31,4 +31,7 @@ class SellerController extends Controller
     public function consumerlist(){
         return view('seller.consumerlist');
     }
+    public function consumeradd(){
+        return view('seller.consumeradd');
+    }
 }

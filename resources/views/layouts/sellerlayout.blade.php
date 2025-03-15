@@ -291,7 +291,7 @@
             </a>
             <ul id="consumer-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
                 <li>
-                    <a href="#">
+                    <a href="{{route('seller.consumeradd')}}">
                         <i class="bi bi-circle"></i><span>Add</span>
                     </a>
                 </li>
@@ -308,14 +308,6 @@
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link {{request()->is('seller/register')? 'active' : '' }}"
-               href="{{ url('seller/register') }}">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li><!-- End Register Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link {{request()->is('seller/contact')? 'active' : '' }}" href="{{url('seller/contact')}}">
