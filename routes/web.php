@@ -20,6 +20,7 @@ Route::prefix('user')->name('user')->group(function(){
        // Route::get('register', [UserController::class, 'register'])->name('register');
         Route::get('profile', [UserController::class, 'profile'])->name('profile');
         Route::get('plan', [UserController::class, 'plan'])->name('user.plan');
+        Route::get('contact', [UserController::class, 'contact'])->name('contact');
 
 
     });
