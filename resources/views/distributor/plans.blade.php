@@ -69,12 +69,12 @@
                         <div class="col-md-3">
                             <select class="form-select">
                                 <option selected disabled>Choose Plan</option>
-                                <option>1000 Mins</option>
-                                <option>5000 Mins</option>
+                                <option>1000 Minutes</option>
+                                <option>5000 Minutes</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value (in Minutes)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary">Buy Now</button>
@@ -92,7 +92,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value (in GB/TB)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary">Buy Now</button>
@@ -110,7 +110,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
+                            <input type="text" class="form-control" placeholder="Enter Custom Value (in GB/TB)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary">Buy Now</button>
