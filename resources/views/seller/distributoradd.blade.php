@@ -16,7 +16,7 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">User Registration Form</h5>
+                                <h5 class="card-title">Distributor Registration Form</h5>
 
                                 <!-- No Labels Form -->
                                 <form class="row g-3">
