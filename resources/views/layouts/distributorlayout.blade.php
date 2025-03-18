@@ -269,28 +269,32 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ url('distributor/dashboard') }}">
+                <a class="nav-link {{ request()->is('distributor/dashboard') ? 'active' : '' }}"
+                    href="{{ url('distributor/dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ url('distributor/plans') }}">
+                <a class="nav-link {{ request()->is('distributor/plans') ? 'active' : '' }}"
+                    href="{{ url('distributor/plans') }}">
                     <i class="bi bi-pencil-square"></i>
                     <span>My Plans</span>
                 </a>
             </li><!-- End Active Plans Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('distributor/profile')}}">
+                <a class="nav-link collapsed {{ request()->is('distributor/profile') ? 'active' : '' }}"
+                    href="{{ url('distributor/profile') }}">
                     <i class="bi bi-person"></i>
                     <span>Profile</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('distributor/register') }}">
+                <a class="nav-link collapsed {{ request()->is('distributor/register') ? 'active' : '' }}"
+                    href="{{ url('distributor/register') }}">
                     <i class="bi bi-card-list"></i>
                     <span>Register User</span>
                 </a>
@@ -304,7 +308,8 @@
             </li><!-- End Login Page Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('distributor/contact')}}">
+                <a class="nav-link collapsed {{ request()->is('distributor/contact') ? 'active' : '' }}"
+                    href="{{ url('distributor/contact') }}">
                     <i class="bi bi-envelope"></i>
                     <span>Contact</span>
                 </a>
