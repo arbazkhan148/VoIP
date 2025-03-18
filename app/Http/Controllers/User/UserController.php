@@ -23,4 +23,8 @@ class UserController extends Controller
     public function plan(){
         return view('user.plan');
     }
+    public function contact(){
+        return view('user.contact');
+    }
+
 }

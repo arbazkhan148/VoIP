@@ -305,7 +305,7 @@
             </li><!-- End Login Page Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('distributor/contact')}}">
+                <a class="nav-link collapsed" href="{{url('user/contact')}}">
                     <i class="bi bi-envelope"></i>
                     <span>Contact</span>
                 </a>
