@@ -39,21 +39,6 @@
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" placeholder="Confirm Password">
                                 </div>
-                                {{-- <div class="col-md-5">
-                                    <select id="inputState" class="form-select">
-                                        <option>Select State</option>
-                                        <option>Jharkhand</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="City">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="Zip">
-                                </div> --}}
-                                {{-- <div class="col-12">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Address</textarea>
-                                </div> --}}
                                 <div class="col-md-12">
                                     <select id="planType" class="form-select">
                                         <option value="">-- Select Plan Type --</option>
