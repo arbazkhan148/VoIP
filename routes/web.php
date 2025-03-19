@@ -45,19 +45,19 @@ Route::name('seller.')->prefix('seller')->group(function(){
 
 Route::prefix('distributor')->name('distributor')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
+        Route::get('register', [DistributorController::class, 'register'])->name('user.register');
+        Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
+        Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
+    });
+
+    Route::middleware(['auth:distributor'])->group(function () {
         Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
         Route::get('profile', [DistributorController::class, 'profile'])->name('distributor.profile');
         Route::get('plans', [DistributorController::class, 'plans'])->name('distributor.plans');
-        Route::get('register', [DistributorController::class, 'register'])->name('user.register');
-        Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('contact', [DistributorController::class, 'contact'])->name('distributor.contact');
         Route::post('contactPost', [DistributorController::class, 'contactPOST'])->name('distributor.contactPost');
         Route::post('/buy-plan', [DistributorController::class, 'store'])->name('buy.plan');
-
-    });
-    Route::middleware(['auth:distributor'])->group(function () {
-        // Route::get('register', [DistributorController::class, 'register'])->name('user.register');
     });
 });
 
