@@ -60,15 +60,23 @@
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    @if (session('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    <form class="row g-3" method="POST" action="{{ url('distributor/loginPost') }}">
+                                        @csrf
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
+                                            <label for="email" class="form-label">Email</label>
+                                            <div class="input-group">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" name="username" class="form-control"
-                                                    id="yourUsername" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                <input type="email" name="email" class="form-control"
+                                                    id="email" required>
                                             </div>
                                         </div>
 
@@ -90,7 +98,8 @@
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12 text-center">
-                                            <span><a href="{{ url('distributor/forgot-password') }}">Forgot Password?</a></span>
+                                            <span><a href="{{ url('distributor/forgot-password') }}">Forgot
+                                                    Password?</a></span>
                                         </div>
                                     </form>
 
