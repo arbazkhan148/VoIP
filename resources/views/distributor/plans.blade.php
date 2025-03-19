@@ -58,67 +58,98 @@
             </div>
         </section>
 
-        <section class="section"> <!-- Plans Section-->
+        <section class="section">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Buy Plans</h5>
 
-                    <!-- First Row: VoIP -->
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">VoIP</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
-                                <option>1000 Minutes</option>
-                                <option>5000 Minutes</option>
-                            </select>
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value (in Minutes)">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
+                    @endif
 
-                    <!-- Second Row: Cloud Storage -->
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">Cloud Storage</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
-                                <option>500 GB</option>
-                                <option>1 TB</option>
-                            </select>
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-3">
+                            {{ session('error') }}
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value (in GB/TB)">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
+                    @endif
 
-                    <!-- Third Row: Hosting -->
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">Hosting</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
-                                <option>500 GB</option>
-                                <option>1 TB</option>
-                            </select>
+
+                    <!-- VoIP Plan Form -->
+                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                        @csrf
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-3">VoIP</div>
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option">
+                                    <option selected disabled>Choose Plan</option>
+                                    <option value="1000 Minutes">1000 Minutes</option>
+                                    <option value="5000 Minutes">5000 Minutes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="custom_value"
+                                    placeholder="Enter Custom Value (in Minutes)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="VoIP">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value (in GB/TB)">
+                    </form>
+
+                    <!-- Cloud Storage Plan Form -->
+                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                        @csrf
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-3">Cloud Storage</div>
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option">
+                                    <option selected disabled>Choose Plan</option>
+                                    <option value="500 GB">500 GB</option>
+                                    <option value="1 TB">1 TB</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="custom_value"
+                                    placeholder="Enter Custom Value (in GB/TB)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="Cloud Storage">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
+                    </form>
+
+                    <!-- Hosting Plan Form -->
+                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                        @csrf
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-3">Hosting</div>
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option">
+                                    <option selected disabled>Choose Plan</option>
+                                    <option value="500 GB">500 GB</option>
+                                    <option value="1 TB">1 TB</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="custom_value"
+                                    placeholder="Enter Custom Value (in GB/TB)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="Hosting">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </section>
+
 
     </main><!-- End #main -->
 
