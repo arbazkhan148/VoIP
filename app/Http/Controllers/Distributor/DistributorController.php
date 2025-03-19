@@ -14,6 +14,10 @@ use Mail;
 
 class DistributorController extends Controller
 {
+    public function login(){
+        return view('distributor.login');
+    }
+
     public function dashboard(){
         return view('distributor.dashboard');
     }
