@@ -53,7 +53,18 @@
 
                 <div class="col-xl-6">
                     <div class="card p-4">
-                        <form action="forms/contact.php" method="post" class="php-email-form">
+
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        <form action=" {{ url('distributor/contactPost') }}" method="post">
+                            @csrf
+
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
@@ -76,11 +87,7 @@
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                    <button type="submit">Send Message</button>
+                                    <button class="btn btn-primary" type="submit">Send Message</button>
                                 </div>
 
                             </div>
