@@ -297,7 +297,7 @@
                 <a class="nav-link collapsed {{ request()->is('distributor/register') ? 'active' : '' }}"
                     href="{{ url('distributor/register') }}">
                     <i class="bi bi-card-list"></i>
-                    <span>Register User</span>
+                    <span>Register Consumer</span>
                 </a>
             </li><!-- End Register Page Nav -->
 
