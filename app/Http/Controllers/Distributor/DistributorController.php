@@ -34,26 +34,26 @@ class DistributorController extends Controller
         return view('distributor.plans');
     }
 
-    public function registerPOST(Request $request){
-        // dd($request->all());
-        User::create([
-            'first_name'=>$request->first_name,
-            'last_name'=>$request->last_name,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'password'=>$request->password,
-            'plan_type'=>$request->plan_type,
-            'plan_desc'=>$request->plan_desc,
-            'custom_input'=>$request->custom_input,
-        ]);
-        return redirect()->back()->with('success', 'Consumer Registered Successfully');
-    }
+    // public function registerPOST(Request $request){
+    //     // dd($request->all());
+    //     User::create([
+    //         'first_name'=>$request->first_name,
+    //         'last_name'=>$request->last_name,
+    //         'phone'=>$request->phone,
+    //         'email'=>$request->email,
+    //         'password'=>$request->password,
+    //         'plan_type'=>$request->plan_type,
+    //         'plan_desc'=>$request->plan_desc,
+    //         'custom_input'=>$request->custom_input,
+    //     ]);
+    //     return redirect()->back()->with('success', 'Consumer Registered Successfully');
+    // }
 
-    public function consumersList(){
-        $users = User::orderBy('created_at', 'desc')->get(); // Pull all registered users
-        return view('distributor.dashboard', compact('users'));
+    // public function consumersList(){
+    //     $users = User::orderBy('created_at', 'desc')->get(); // Pull all registered users
+    //     return view('distributor.dashboard', compact('users'));
 
-    }
+    // }
 
     public function store(Request $request)
     {
