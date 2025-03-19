@@ -7,7 +7,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Dashboard</a></li>
-                    <li class="breadcrumb-item">Registration Form</li>
+                    <li class="breadcrumb-item">Register Consumer</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -17,30 +17,44 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">User Registration Form</h5>
+                            <h5 class="card-title">Consumer Registration Form</h5>
+
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
 
                             <!-- No Labels Form -->
-                            <form class="row g-3">
+                            <form class="row g-3" action="{{ url('distributor/registerPost') }}" method="POST">
+                                @csrf
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Phone Number">
+                                    <input type="text" class="form-control" placeholder="Phone Number" name="phone"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password" name="password"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" class="form-control" placeholder="Confirm Password"
+                                        name="password_confirmation" required>
                                 </div>
                                 <div class="col-md-12">
-                                    <select id="planType" class="form-select">
+                                    <select id="planType" class="form-select" name="plan_type" required>
                                         <option value="">-- Select Plan Type --</option>
                                         <option value="voip">VoIP</option>
                                         <option value="cloud">Cloud Storage</option>
@@ -48,14 +62,14 @@
                                     </select>
                                 </div>
                                 <div class="col-md-12">
-                                    <select id="planOption" class="form-select">
+                                    <select id="planOption" class="form-select" name="plan_desc" required>
                                         <option value="">-- Select Plan --</option>
                                     </select>
                                 </div>
                                 <div id="customInputWrapper" class="mb-3 d-none">
                                     <label for="customInput" class="form-label">Enter Custom Value:</label>
                                     <input type="text" id="customInput" class="form-control"
-                                        placeholder="Enter your custom value">
+                                        placeholder="Enter your custom value" name="custom_input">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -109,8 +123,10 @@
 
             if (selectedPlan === 'custom') {
                 customInputWrapper.classList.remove('d-none');
+                customInput.required = true;
             } else {
                 customInputWrapper.classList.add('d-none');
+                customInput.required = false;
                 customInput.value = '';
             }
         });
