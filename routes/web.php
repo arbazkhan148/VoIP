@@ -50,6 +50,9 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('contact', [DistributorController::class, 'contact'])->name('distributor.contact');
         Route::post('contactPost', [DistributorController::class, 'contactPOST'])->name('distributor.contactPost');
+        Route::get('dashboard', [DistributorController::class, 'consumersList'])->name('distributor.consumersList');
+        Route::post('/buy-plan', [DistributorController::class, 'store'])->name('buy.plan');
+
     });
     Route::middleware(['auth:distributor'])->group(function () {
         // Route::get('register', [DistributorController::class, 'register'])->name('user.register');
