@@ -101,7 +101,6 @@
                                     <h5 class="card-title">Customers List</h5>
 
                                     <!-- Customers Table-->
-                                    @if ($users->count() > 0)
                                         <table class="table datatable">
                                             <thead>
                                                 <tr>
@@ -116,7 +115,7 @@
                                                     <th scope="col">Registered At</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            {{-- <tbody>
                                                 @foreach ($users as $index => $user)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
@@ -129,14 +128,11 @@
                                                         <td>{{ $user->custom_input ?? 'N/A' }}</td>
                                                         <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
                                                     </tr>
-                                                @endforeach
+                                                @endforeach --}}
 
                                             </tbody>
                                         </table>
                                         <!-- End of Customers Table -->
-                                    @else
-                                        <p class="text-muted">No consumers registered yet.</p>
-                                    @endif
                                 </div>
 
                             </div>
