@@ -49,10 +49,11 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
+        Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
     });
 
     Route::middleware(['auth:distributor'])->group(function () {
-        Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
+
         Route::get('profile', [DistributorController::class, 'profile'])->name('distributor.profile');
         Route::get('plans', [DistributorController::class, 'plans'])->name('distributor.plans');
         Route::get('contact', [DistributorController::class, 'contact'])->name('distributor.contact');
