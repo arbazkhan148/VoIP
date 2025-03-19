@@ -33,6 +33,8 @@ Route::name('seller.')->prefix('seller')->group(function(){
         Route::get('contact', [SellerController::class, 'contact'])->name('contact');
         Route::get('distributor/list', [SellerController::class, 'distributorlist'])->name('distributorlist');
         Route::get('distributor/add', [SellerController::class, 'distributoradd'])->name('distributoradd');
+        Route::post('distributor/store', [SellerController::class, 'distributorstore'])->name('distributorstore');
+        Route::get('distributor/plandetails/{id}', [SellerController::class, 'distributorplandtl'])->name('distributorplandtl');
         Route::get('consumer/list', [SellerController::class, 'consumerlist'])->name('consumerlist');
         Route::get('consumer/add', [SellerController::class, 'consumeradd'])->name('consumeradd');
     });
@@ -43,6 +45,7 @@ Route::name('seller.')->prefix('seller')->group(function(){
 
 Route::prefix('distributor')->name('distributor')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
+        Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
         Route::get('profile', [DistributorController::class, 'profile'])->name('distributor.profile');
         Route::get('plans', [DistributorController::class, 'plans'])->name('distributor.plans');
