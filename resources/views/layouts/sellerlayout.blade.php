@@ -312,14 +312,6 @@
                 </a>
             </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('seller/contact') ? 'active' : '' }}"
-                    href="{{ url('seller/contact') }}">
-                    <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
-                </a>
-            </li><!-- End Contact Page Nav -->
-
         </ul>
 
     </aside><!-- End Sidebar-->

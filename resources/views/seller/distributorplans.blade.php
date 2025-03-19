@@ -3,11 +3,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Consumer List</h1>
+            <h1>Distributor Plan Details</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Dashboard</li>
-                    <li class="breadcrumb-item active">Consumer List</li>
+                    <li class="breadcrumb-item active">Distributor Plan Details</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -18,34 +18,32 @@
 
                     <div class="card">
                         <div class="card-body">
+                            <div class="p-3">
+                                <strong>Name:</strong> {{$distributor->first_name}} {{$distributor->last_name}} <br>
+                                <strong>Mobile No.:</strong> {{$distributor->phone}}
+                            </div>
+
                             <div class="table-responsive">
                                 <table id="Table" class="table table-striped table-bordered display">
                                     <thead>
                                     <tr>
                                         <th>Sl No.</th>
-                                        <th>Name</th>
-                                        <th>Mobile No.</th>
-                                        <th>Email</th>
-                                        <th>Plan Details</th>
+                                        <th>Type</th>
+                                        <th>Details</th>
+                                        <th>Date</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($distributors as $distributor)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$distributor->first_name}} {{$distributor->last_name}}</td>
-                                            <td>{{$distributor->phone}}</td>
-                                            <td>{{$distributor->email}}</td>
-                                            <td><a href="#">View</a></td>
-                                            <td>{{$distributor->status}}</td>
-                                            <td>
-                                                <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
-                                                <a href="#" class="btn btn-outline-danger btn-sm">Block</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                   @foreach($distributorplan as $plan)
+                                       <tr>
+                                           <td>{{$loop->iteration}}</td>
+                                           <td>{{$plan->plan_type}}</td>
+                                           <td>{{$plan->plan_desc}}</td>
+                                           <td>{{$plan->date}}</td>
+                                           <td>{{$plan->status}}</td>
+                                       </tr>
+                                   @endforeach
                                     </tbody>
                                 </table>
                         </div>

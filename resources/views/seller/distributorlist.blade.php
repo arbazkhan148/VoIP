@@ -22,23 +22,30 @@
                                 <table id="Table" class="table table-striped table-bordered display">
                                     <thead>
                                     <tr>
+                                        <th>Sl No.</th>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Mobile No.</th>
+                                        <th>Email</th>
+                                        <th>Plan Details</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
+                                   @foreach($distributors as $distributor)
+                                       <tr>
+                                           <td>{{$loop->iteration}}</td>
+                                           <td>{{$distributor->first_name}} {{$distributor->last_name}}</td>
+                                           <td>{{$distributor->phone}}</td>
+                                           <td>{{$distributor->email}}</td>
+                                           <td><a href="{{route('seller.distributorplandtl',[$distributor->id])}}">View</a></td>
+                                           <td>{{$distributor->status}}</td>
+                                           <td>
+                                               <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
+                                               <a href="#" class="btn btn-outline-danger btn-sm">Block</a>
+                                           </td>
+                                       </tr>
+                                   @endforeach
                                     </tbody>
                                 </table>
                         </div>
