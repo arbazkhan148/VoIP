@@ -18,6 +18,20 @@ class DistributorController extends Controller
         return view('distributor.login');
     }
 
+    public function loginPOST(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required',
+        ]);
+
+        $credentials=$request->only('email','password');
+        if(Auth::attempt($credentials)){
+            return redirect('/');
+        }
+        return redirect('/login')->withSuccess('Oops! Your login credentials are incorrect.');
+    }
+
     public function dashboard(){
         return view('distributor.dashboard');
     }
