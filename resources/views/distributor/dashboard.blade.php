@@ -100,92 +100,50 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Customers List</h5>
 
-                                    <!-- Recent Sales -->
-                                    <div class="col-12">
-                                        <div class="card recent-sales overflow-auto">
+                                    <!-- Customers Table-->
+                                        <table class="table datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">First Name</th>
+                                                    <th scope="col">Last Name</th>
+                                                    <th scope="col">Phone</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Plan Type</th>
+                                                    <th scope="col">Plan Description</th>
+                                                    <th scope="col">Custom Input</th>
+                                                    <th scope="col">Registered At</th>
+                                                </tr>
+                                            </thead>
+                                            {{-- <tbody>
+                                                @foreach ($users as $index => $user)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ $user->first_name }}</td>
+                                                        <td>{{ $user->last_name }}</td>
+                                                        <td>{{ $user->phone }}</td>
+                                                        <td>{{ $user->email }}</td>
+                                                        <td>{{ ucfirst($user->plan_type) }}</td>
+                                                        <td>{{ ucfirst(str_replace('_', ' ', $user->plan_desc)) }}</td>
+                                                        <td>{{ $user->custom_input ?? 'N/A' }}</td>
+                                                        <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
+                                                    </tr>
+                                                @endforeach --}}
 
-                                            <div class="filter">
-                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                        class="bi bi-three-dots"></i></a>
-                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                    <li class="dropdown-header text-start">
-                                                        <h6>Filter</h6>
-                                                    </li>
-
-                                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <h5 class="card-title">Recent Sales <span>| Today</span></h5>
-
-                                                <table class="table table-borderless datatable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Customer</th>
-                                                            <th scope="col">Product</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Status</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row"><a href="#">#2457</a></th>
-                                                            <td>Brandon Jacob</td>
-                                                            <td><a href="#" class="text-primary">At praesentium
-                                                                    minu</a></td>
-                                                            <td>$64</td>
-                                                            <td><span class="badge bg-success">Approved</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row"><a href="#">#2147</a></th>
-                                                            <td>Bridie Kessler</td>
-                                                            <td><a href="#" class="text-primary">Blanditiis dolor
-                                                                    omnis similique</a></td>
-                                                            <td>$47</td>
-                                                            <td><span class="badge bg-warning">Pending</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row"><a href="#">#2049</a></th>
-                                                            <td>Ashleigh Langosh</td>
-                                                            <td><a href="#" class="text-primary">At recusandae
-                                                                    consectetur</a></td>
-                                                            <td>$147</td>
-                                                            <td><span class="badge bg-success">Approved</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row"><a href="#">#2644</a></th>
-                                                            <td>Angus Grady</td>
-                                                            <td><a href="#" class="text-primar">Ut voluptatem id
-                                                                    earum et</a></td>
-                                                            <td>$67</td>
-                                                            <td><span class="badge bg-danger">Rejected</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row"><a href="#">#2644</a></th>
-                                                            <td>Raheem Lehner</td>
-                                                            <td><a href="#" class="text-primary">Sunt similique
-                                                                    distinctio</a></td>
-                                                            <td>$165</td>
-                                                            <td><span class="badge bg-success">Approved</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-
-                                        </div>
-                                    </div><!-- End Recent Sales -->
-
+                                            </tbody>
+                                        </table>
+                                        <!-- End of Customers Table -->
                                 </div>
-                            </div><!-- End Left side columns -->
 
-                        </div><!-- End Right side columns -->
+                            </div>
+                        </div><!-- End of Customers List -->
 
                     </div>
+                </div><!-- End Left side columns -->
+
+            </div><!-- End Right side columns -->
+
+            </div>
         </section>
 
     </main><!-- End #main -->
