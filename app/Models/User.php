@@ -27,6 +27,7 @@ class User extends Authenticatable
         'plan_type',
         'plan_desc',
         'custom_input',
+        'status',
     ];
 
     /**
