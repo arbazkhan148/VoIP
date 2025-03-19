@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Distributor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\DistributorPlan;
+use App\Models\{User,Distributor,DistributorPlan};
 use Hash;
 use Auth;
 use Session;
@@ -18,18 +17,27 @@ class DistributorController extends Controller
         return view('distributor.login');
     }
 
-    public function loginPOST(Request $request){
+    public function loginPost(Request $request){
         // dd($request->all());
+
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ],
+        [
+            'email.required' => 'Email is required.',
+            'email.email' => 'Please provide a valid email address.',
+            'email.max' => 'Email cannot exceed 255 characters.',
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least 8 characters long.',
+            'password.max' => 'Password cannot exceed 20 characters.',
         ]);
 
-        $credentials=$request->only('email','password');
-        if(Auth::attempt($credentials)){
-            return redirect('/');
-        }
-        return redirect('/login')->withSuccess('Oops! Your login credentials are incorrect.');
+            $credentials = $request->only('email', 'password');
+            if (Auth::guard('distributor')->attempt($credentials)) {
+                return redirect('distributor/dashboard');
+            }
+            return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
     public function dashboard(){
