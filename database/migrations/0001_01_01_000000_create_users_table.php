@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('plan_type')->nullable();
             $table->string('plan_desc')->nullable();
             $table->string('custom_input')->nullable();
-            $table->string('status')->default('Pending');
+            $table->string('status')->default('approved')->change();
             $table->timestamps();
         });
 
