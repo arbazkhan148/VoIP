@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Distributor;
-
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +13,12 @@ use Mail;
 
 class DistributorController extends Controller
 {
+
     public function login(){
         return view('distributor.login');
     }
 
     public function loginPost(Request $request){
-//         dd($request->all());
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -38,6 +37,42 @@ class DistributorController extends Controller
             }
             return redirect()->back()->with('error', 'Invalid Credentials');
     }
+
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return redirect('distributor/login');
+    }
+
+    public function showProfile(){
+    $user = Auth::user();
+    return view('distributor/profile', compact('user'));
+    }
+
+     // Update the profile details
+     public function updateProfile(Request $request)
+     {
+        $user = Auth::user(); // Get logged-in user
+
+         // Validate input data
+        $validatedData = $request->validate([
+             'first_name' => 'required|string|max:255',
+             'last_name'  => 'required|string|max:255',
+             'phone'      => 'required|string|max:20',
+             'email'      => 'required|email|unique:users,email,' . $user->id, // ignore the current user's email
+        ]);
+
+         // Update the user's info
+        $user->first_name = $validatedData['first_name'];
+        $user->last_name  = $validatedData['last_name'];
+        $user->phone      = $validatedData['phone'];
+        $user->email      = $validatedData['email'];
+
+        $user->save(); // Save the updated info in the database
+
+        return redirect()->url('distributor/profile')->with('success', 'Profile updated successfully!');
+    }
+
 
     public function dashboard(){
         return view('distributor.dashboard');
