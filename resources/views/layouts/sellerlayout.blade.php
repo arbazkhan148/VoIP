@@ -40,7 +40,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ route('seller.logout') }}" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">VM Softech</span>
+                <span class="d-none d-lg-block">Future Next</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -265,20 +265,20 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('seller/distributor/*') ? 'active' : '' }} collapsed" href="#"
+                <a class="nav-link {{ request()->is('seller/distributor/*') ? 'active' : 'collapsed' }}" href="#"
                     data-bs-target="#distributor-nav" data-bs-toggle="collapse">
                     <i class="bi bi-person"></i>
                     <span>Distributor</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="distributor-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
+                <ul id="distributor-nav" class="nav-content collapse {{ request()->is('seller/distributor/*') ? 'show' : '' }}" data-bs-parent="#sidebar-nav" style="">
                     <li>
-                        <a href="{{ route('seller.distributoradd') }}">
+                        <a href="{{ route('seller.distributoradd') }}" class="{{ request()->is('seller/distributor/add') ? 'active' : '' }} ">
                             <i class="bi bi-circle"></i><span>Add</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('seller.distributorlist') }}">
+                        <a href="{{ route('seller.distributorlist') }}" class=" {{ request()->is('seller/distributor/list') ? 'active' : '' }} ">
                             <i class="bi bi-circle"></i><span>List</span>
                         </a>
                     </li>
@@ -291,14 +291,14 @@
                     <span>Consumer</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="consumer-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
+                <ul id="consumer-nav" class="nav-content collapse {{ request()->is('seller/consumer/*') ? 'show' : '' }}" data-bs-parent="#sidebar-nav" style="">
                     <li>
-                        <a href="{{ route('seller.consumeradd') }}">
+                        <a href="{{ route('seller.consumeradd') }}" class="{{ request()->is('seller/consumer/add') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>Add</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('seller.consumerlist') }}">
+                        <a href="{{ route('seller.consumerlist') }}" class="{{ request()->is('seller/consumer/list') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>List</span>
                         </a>
                     </li>
@@ -321,7 +321,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>VM Softech</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Future Next</span></strong>. All Rights Reserved
         </div>
     </footer><!-- End Footer -->
 

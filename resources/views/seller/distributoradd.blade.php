@@ -35,6 +35,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                    @error('email')
+                                        <span class="text-danger">{{$errors->first('email')}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" placeholder="Password" name="password"

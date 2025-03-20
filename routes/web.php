@@ -27,6 +27,9 @@ Route::prefix('user')->name('user')->group(function(){
 
 Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
+        Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
+        Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
+
         Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [SellerController::class, 'profile'])->name('profile');
         Route::get('register', [SellerController::class, 'register'])->name('register');
@@ -37,6 +40,8 @@ Route::name('seller.')->prefix('seller')->group(function(){
         Route::get('distributor/plandetails/{id}', [SellerController::class, 'distributorplandtl'])->name('distributorplandtl');
         Route::get('consumer/list', [SellerController::class, 'consumerlist'])->name('consumerlist');
         Route::get('consumer/add', [SellerController::class, 'consumeradd'])->name('consumeradd');
+        Route::post('consumer/store', [SellerController::class, 'consumerstore'])->name('consumerstore');
+        Route::get('consumer/plandetails/{id}', [SellerController::class, 'consumerplandtl'])->name('consumerplandtl');
     });
     Route::middleware(['auth:seller'])->group(function () {
         Route::get('logout', [SellerController::class, 'logout'])->name('logout');

@@ -63,7 +63,6 @@ return [
             'driver' => 'session',
             'provider' => 'distributors',
         ],
-
     ],
 
     /*

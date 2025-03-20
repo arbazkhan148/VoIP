@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Distributor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\{User,Distributor,DistributorPlan};
 use Hash;
-use Auth;
 use Session;
 use DB;
 use Mail;
@@ -18,7 +18,7 @@ class DistributorController extends Controller
     }
 
     public function loginPost(Request $request){
-        // dd($request->all());
+//         dd($request->all());
 
         $request->validate([
             'email' => 'required|email',
@@ -32,7 +32,6 @@ class DistributorController extends Controller
             'password.min' => 'Password must be at least 8 characters long.',
             'password.max' => 'Password cannot exceed 20 characters.',
         ]);
-
             $credentials = $request->only('email', 'password');
             if (Auth::guard('distributor')->attempt($credentials)) {
                 return redirect('distributor/dashboard');

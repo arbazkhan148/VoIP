@@ -18,8 +18,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Consumer Registration Form</h5>
 
-                            <!-- No Labels Form -->
-                            <form class="row g-3" action="" method="post"> @csrf
+                            <form class="row g-3" action="{{ route('seller.consumerstore') }}" method="post"> @csrf
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" placeholder="First Name" name="first_name"
                                         required>
@@ -60,6 +59,12 @@
                                     <label for="customInput" class="form-label">Enter Custom Value:</label>
                                     <input type="text" id="customInput" class="form-control"
                                         placeholder="Enter your custom value">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <select id="assigned_distributor" class="form-select" name="assigned_distributor" >
+                                        <option value="">-- Assign Distributor --</option>
+                                    </select>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

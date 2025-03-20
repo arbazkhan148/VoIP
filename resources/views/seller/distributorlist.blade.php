@@ -42,7 +42,7 @@
                                            <td>{{$distributor->status}}</td>
                                            <td>
                                                <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
-                                               <a href="#" class="btn btn-outline-danger btn-sm">Block</a>
+{{--                                               <a href="#" class="btn btn-outline-danger btn-sm">Block</a>--}}
                                            </td>
                                        </tr>
                                    @endforeach
