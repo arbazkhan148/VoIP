@@ -29,7 +29,6 @@ Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
-
         Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [SellerController::class, 'profile'])->name('profile');
         Route::get('register', [SellerController::class, 'register'])->name('register');
@@ -50,20 +49,22 @@ Route::name('seller.')->prefix('seller')->group(function(){
 
 Route::prefix('distributor')->name('distributor')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
-        Route::get('register', [DistributorController::class, 'register'])->name('user.register');
-        Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
+        // Route::get('register', [DistributorController::class, 'register'])->name('user.register');
+        // Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
-        Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
+        Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
     });
 
     Route::middleware(['auth:distributor'])->group(function () {
-
+        Route::get('dashboard', [DistributorController::class, 'dashboard'])->name('distributor.dashboard');
         Route::get('profile', [DistributorController::class, 'profile'])->name('distributor.profile');
         Route::get('plans', [DistributorController::class, 'plans'])->name('distributor.plans');
         Route::get('contact', [DistributorController::class, 'contact'])->name('distributor.contact');
         Route::post('contactPost', [DistributorController::class, 'contactPOST'])->name('distributor.contactPost');
-        Route::post('/buy-plan', [DistributorController::class, 'store'])->name('buy.plan');
+        Route::post('buy-plan', [DistributorController::class, 'store'])->name('buy.plan');
+        Route::get('profile', [DistributorController::class, 'showProfile'])->name('distributor.profile');
+        Route::put('profile/update', [DistributorController::class, 'updateProfile'])->name('profile.update');
     });
 });
 
