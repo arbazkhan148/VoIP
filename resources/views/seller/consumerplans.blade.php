@@ -40,7 +40,7 @@
                                            <td>{{$loop->iteration}}</td>
                                            <td>{{$plan->plan_type}}</td>
                                            <td>{{$plan->plan_desc}}</td>
-                                           <td>{{$plan->distributor}}</td>
+                                           <td>{{$plan->distributor??""}}</td>
                                            <td>{{$plan->date}}</td>
                                            <td>{{$plan->status}}</td>
                                        </tr>

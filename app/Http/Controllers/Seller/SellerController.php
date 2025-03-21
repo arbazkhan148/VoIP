@@ -147,9 +147,10 @@ class SellerController extends Controller
     public function consumerplandtl($id){
         $consumer=Consumer::where('id',$id)->first();
         $consumerplan=ConsumerPlan::where('consumer_id',$id)->latest()->get()->each(function ($value){
-            $distributor=Distributor::where('id',$value->assigned_distributor)->first();
-            $value->distributor=$distributor->first_name.' '.$distributor->last_name."(".$distributor->phone.")";
-
+            if(!empty($value->assigned_distributor)){
+                $distributor=Distributor::where('id',$value->assigned_distributor)->first();
+                $value->distributor=$distributor->first_name.' '.$distributor->last_name."(".$distributor->phone.")";
+            }
         });
         return view('seller.consumerplans',compact('consumer','consumerplan'));
     }
