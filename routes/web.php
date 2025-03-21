@@ -33,17 +33,13 @@ Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['auth:seller'])->group(function () {
         Route::get('profile', [SellerController::class, 'profile'])->name('profile');
         Route::put('profile/update', [SellerController::class, 'updateProfile'])->name('profile.update');
-
-        Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
-//        Route::get('register', [SellerController::class, 'register'])->name('register');
-//        Route::get('contact', [SellerController::class, 'contact'])->name('contact');
-        Route::get('distributor/list', [SellerController::class, 'distributorlist'])->name('distributorlist');
         Route::get('distributor/add', [SellerController::class, 'distributoradd'])->name('distributoradd');
+        Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
+        Route::get('distributor/list', [SellerController::class, 'distributorlist'])->name('distributorlist');
         Route::post('distributor/store', [SellerController::class, 'distributorstore'])->name('distributorstore');
         Route::get('distributor/plandetails/{id}', [SellerController::class, 'distributorplandtl'])->name('distributorplandtl');
         Route::post('distributor/plandetails/{id}/approve', [SellerController::class, 'distributorplanapprove'])->name('distributorplanapprove');
         Route::get('distributorplans/list', [SellerController::class, 'distributorplanslist'])->name('distributorplanslist');
-
         Route::get('consumer/list', [SellerController::class, 'consumerlist'])->name('consumerlist');
         Route::get('consumer/add', [SellerController::class, 'consumeradd'])->name('consumeradd');
         Route::post('consumer/store', [SellerController::class, 'consumerstore'])->name('consumerstore');
