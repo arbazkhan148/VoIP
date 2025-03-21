@@ -73,6 +73,30 @@ class DistributorController extends Controller
         return redirect()->url('distributor/profile')->with('success', 'Profile updated successfully!');
     }
 
+    public function changePassword(Request $request)
+    {
+        // Validate incoming data
+        // Validate the request fields
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        // Get the currently authenticated distributor
+        $distributors = Auth::guard('distributor')->user();
+
+        // Verify current password
+        if (!Hash::check($request->current_password, $distributors->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect.');
+        }
+
+        // Update the password
+        $distributors->password = Hash::make($request->new_password);
+        $distributors->save();
+
+        return redirect()->back()->with('success', 'Password updated successfully!');
+    }
+
 
     public function dashboard(){
         return view('distributor.dashboard');
