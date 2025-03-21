@@ -7,7 +7,6 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Dashboard</li>
-                    <li class="breadcrumb-item active">Pending Plans</li>
                     <li class="breadcrumb-item active">Consumer Pending Plan</li>
                 </ol>
             </nav>
