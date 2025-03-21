@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Distributor\DistributorController;
 use App\Http\Controllers\ConsumerController;
+use App\Http\Controllers\Futurenxt\FuturenxtController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -73,5 +75,22 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
     });
 });
+Route::prefix('futurenxt')->name('futurenxt')->group(function(){
+    Route::middleware(['guest:web'])->group(function () {
+        Route::get('index', [FuturenxtController::class, 'index'])->name('index');
+        Route::get('userregister', [FuturenxtController::class, 'userregister'])->name('userregister');
+        Route::get('userlogin', [FuturenxtController::class, 'userlogin'])->name('userlogin');
+        Route::get('contact', [FuturenxtController::class, 'contact'])->name('contact');
+        Route::get('partnerregister', [FuturenxtController::class, 'partnerregister'])->name('partnerregister');
+        Route::get('partnerlogin', [FuturenxtController::class, 'partnerlogin'])->name('partnerlogin');
+        Route::get('pricing', [FuturenxtController::class, 'pricing'])->name('pricing');
+        Route::get('features', [FuturenxtController::class, 'features'])->name('features');
+        Route::get('domain', [FuturenxtController::class, 'domain'])->name('domain');
+    });
+    Route::middleware(['auth:futurenxt'])->group(function () {
+    });
+
+});
+
 
 
