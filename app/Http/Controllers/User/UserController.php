@@ -20,9 +20,7 @@ class UserController extends Controller
 
         return view('user.profile');
     }
-    public function plan(){
-        return view('user.plan');
-    }
+
     public function contact(){
         return view('user.contact');
     }

@@ -3,11 +3,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>My Plans</h1>
+            <h1>User Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Plans</li>
+                    {{-- <li class="breadcrumb-item active">Plans</li> --}}
                 </ol>
             </nav>
         </div><!-- End Page Title -->
