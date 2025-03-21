@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('distributor_plans', function (Blueprint $table) {
             $table->id();
-            $table->string('distributor_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('plan_type')->nullable();
             $table->string('plan_desc')->nullable();
-            $table->date('date')->nullable();
+            $table->date('date')->default(date('Y-m-d'));
             $table->string('status')->default('Pending');
             $table->timestamps();
         });

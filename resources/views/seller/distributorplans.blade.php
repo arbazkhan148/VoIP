@@ -32,6 +32,7 @@
                                         <th>Details</th>
                                         <th>Date</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -41,7 +42,14 @@
                                            <td>{{$plan->plan_type}}</td>
                                            <td>{{$plan->plan_desc}}</td>
                                            <td>{{$plan->date}}</td>
-                                           <td>{{$plan->status}}</td>
+                                           <td><span class="">{{$plan->status}}</span></td>
+                                           <td>
+                                               @if($plan->status=="Pending")
+                                                   <form action="{{route('seller.distributorplanapprove',[$plan->id])}}" method="post">@csrf
+                                                       <button class="btn btn-success btn-sm">Approve</button>
+                                                   </form>
+                                              @endif
+                                           </td>
                                        </tr>
                                    @endforeach
                                     </tbody>
@@ -64,4 +72,9 @@
     fixedHeight: true,
     })
     </script>
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
 @endsection

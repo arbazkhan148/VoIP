@@ -47,24 +47,6 @@
                                     <input type="password" class="form-control" placeholder="Confirm Password"
                                         name="confirm_password" required>
                                 </div>
-                                <div class="col-md-12">
-                                    <select id="planType" class="form-select" name="plan_type" required>
-                                        <option value="">-- Select Plan Type --</option>
-                                        <option value="voip">VoIP</option>
-                                        <option value="cloud">Cloud Storage</option>
-                                        <option value="hosting">Hosting</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <select id="planOption" class="form-select" name="plan_desc" required>
-                                        <option value="">-- Select Plan --</option>
-                                    </select>
-                                </div>
-                                <div id="customInputWrapper" class="mb-3 d-none">
-                                    <label for="customInput" class="form-label">Enter Custom Value:</label>
-                                    <input type="text" id="customInput" class="form-control"
-                                        placeholder="Enter your custom value" name="custom_input">
-                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>

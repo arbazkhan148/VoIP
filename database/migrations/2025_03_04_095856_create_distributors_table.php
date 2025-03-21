@@ -15,9 +15,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
-            $table->string('plan_type')->nullable();
-            $table->string('plan_desc')->nullable();
-            $table->string('custom_input')->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();
         });

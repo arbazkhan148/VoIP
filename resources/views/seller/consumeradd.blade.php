@@ -33,6 +33,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                    @error('email')
+                                    <span class="text-danger">{{$errors->first('email')}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" placeholder="Password" name="password"
@@ -41,30 +44,6 @@
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" placeholder="Confirm Password"
                                         name="confirm_password" required>
-                                </div>
-                                <div class="col-md-12">
-                                    <select id="planType" class="form-select" name="plan_type" required>
-                                        <option value="">-- Select Plan Type --</option>
-                                        <option value="voip">VoIP</option>
-                                        <option value="cloud">Cloud Storage</option>
-                                        <option value="hosting">Hosting</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <select id="planOption" class="form-select" name="plan_desc" required>
-                                        <option value="">-- Select Plan --</option>
-                                    </select>
-                                </div>
-                                <div id="customInputWrapper" class="mb-3 d-none">
-                                    <label for="customInput" class="form-label">Enter Custom Value:</label>
-                                    <input type="text" id="customInput" class="form-control"
-                                        placeholder="Enter your custom value">
-                                </div>
-
-                                <div class="col-md-12">
-                                    <select id="assigned_distributor" class="form-select" name="assigned_distributor" >
-                                        <option value="">-- Assign Distributor --</option>
-                                    </select>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

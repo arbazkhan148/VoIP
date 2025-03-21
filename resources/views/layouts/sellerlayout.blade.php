@@ -207,13 +207,12 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
                         <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::guard('seller')->user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>{{ Auth::guard('seller')->user()->name }}</h6>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -300,6 +299,26 @@
                     <li>
                         <a href="{{ route('seller.consumerlist') }}" class="{{ request()->is('seller/consumer/list') ? 'active' : '' }}">
                             <i class="bi bi-circle"></i><span>List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('seller/consumer/*') ? 'active' : '' }} collapsed" href="#"
+                   data-bs-target="#plan-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-person"></i>
+                    <span>Plans</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="plan-nav" class="nav-content collapse {{ (request()->is('seller/consumerplans/list') || request()->is('seller/distributorplans/list'))? 'show' : '' }}" data-bs-parent="#sidebar-nav" style="">
+                    <li>
+                        <a href="{{ route('seller.distributorplanslist') }}" class="{{ request()->is('seller/distributorplans/list') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Distributor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('seller.consumerplanslist') }}" class="{{ request()->is('seller/consumerplans/list') ? 'active' : '' }}">
+                            <i class="bi bi-circle"></i><span>Consumer</span>
                         </a>
                     </li>
                 </ul>
