@@ -27,7 +27,7 @@ return [
         'guard' => env('AUTH_GUARD', 'distributor'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'distributors'),
     ],
-'futurenxt' => [
+    'futurenxt' => [
         'guard' => env('AUTH_GUARD', 'website'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'futurenxts'),
     ],

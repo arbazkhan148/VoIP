@@ -10,7 +10,43 @@ use App\Http\Controllers\Futurenxt\FuturenxtController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('futurenxt/index');
+});
+
+Route::get('/about_us', function () {
+    return view('futurenxt/about_us');
+});
+
+Route::get('/contact', function () {
+    return view('futurenxt/contact');
+});
+
+Route::get('/voip', function () {
+    return view('futurenxt/voip');
+});
+
+Route::get('/cloud', function () {
+    return view('futurenxt/cloud');
+});
+
+Route::get('/hosting', function () {
+    return view('futurenxt/hosting');
+});
+
+Route::get('/user_register', function () {
+    return view('futurenxt/user_register');
+});
+
+Route::get('/user_login', function () {
+    return view('futurenxt/user_login');
+});
+
+Route::get('/partner_register', function () {
+    return view('futurenxt/partner_register');
+});
+
+Route::get('/partner_login', function () {
+    return view('futurenxt/partner_login');
 });
 
 Auth::routes();
@@ -50,7 +86,6 @@ Route::name('seller.')->prefix('seller')->group(function(){
         Route::post('consumer/plandetails/{id}/approve', [SellerController::class, 'consumerplanapprove'])->name('consumerplanapprove');
         Route::get('consumerplans/list', [SellerController::class, 'consumerplanslist'])->name('consumerplanslist');
         Route::get('consumerplans/view/{id}', [SellerController::class, 'consumerplansview'])->name('consumerplansview');
-
         Route::get('logout', [SellerController::class, 'logout'])->name('logout');
     });
 });
@@ -76,23 +111,5 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
     });
 });
-Route::prefix('futurenxt')->name('futurenxt')->group(function(){
-    Route::middleware(['guest:web'])->group(function () {
-        Route::get('index', [FuturenxtController::class, 'index'])->name('index');
-        Route::get('userregister', [FuturenxtController::class, 'userregister'])->name('userregister');
-        Route::get('userlogin', [FuturenxtController::class, 'userlogin'])->name('userlogin');
-        Route::get('contact', [FuturenxtController::class, 'contact'])->name('contact');
-        Route::get('partnerregister', [FuturenxtController::class, 'partnerregister'])->name('partnerregister');
-        Route::get('partnerlogin', [FuturenxtController::class, 'partnerlogin'])->name('partnerlogin');
-        Route::get('pricing', [FuturenxtController::class, 'pricing'])->name('pricing');
-        Route::get('features', [FuturenxtController::class, 'features'])->name('features');
-        Route::get('domain', [FuturenxtController::class, 'domain'])->name('domain');
-
-        Route::post('userregister_api', [FuturenxtController::class, 'userregister_api'])->name('userregister_api');
-        Route::post('partner_api', [FuturenxtController::class, 'partner_api'])->name('partner_api');
-    });
-    Route::middleware(['auth:futurenxt'])->group(function () {  });
-});
-
 
 

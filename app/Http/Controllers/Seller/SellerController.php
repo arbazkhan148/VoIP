@@ -146,7 +146,7 @@ class SellerController extends Controller
             'email'=>'required|unique:consumers'
         ]);
         $consumer=Consumer::create(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email,
-            'password'=>Hash::make($request->password),'status'=>'Approved']);
+            'password'=>Hash::make($request->password)]);
 //        ConsumerPlan::create([
 //            'consumer_id'=>$consumer->id,
 //            'plan_type'=>$consumer->plan_type,

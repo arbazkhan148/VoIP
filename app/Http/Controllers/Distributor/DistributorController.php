@@ -49,7 +49,6 @@ class DistributorController extends Controller
     return view('distributor/profile', compact('user'));
     }
 
-     // Update the profile details
      public function updateProfile(Request $request)
      {
         $user = Auth::user(); // Get logged-in user
@@ -75,8 +74,6 @@ class DistributorController extends Controller
 
     public function changePassword(Request $request)
     {
-        // Validate incoming data
-        // Validate the request fields
         $request->validate([
             'current_password' => 'required',
             'new_password' => 'required|confirmed',

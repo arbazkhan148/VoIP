@@ -116,12 +116,12 @@
                 <input type="text" id="last_name" name="last_name" required>
             </div>
             <div class="registration-field">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="registration-field">
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="registration-field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="registration-field">
                 <label for="password">Password</label>
