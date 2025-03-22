@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Consumer\ConsumerController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Seller\SellerController;
@@ -36,6 +37,7 @@ Route::get('/hosting', function () {
 Route::get('/user_register', function () {
     return view('futurenxt/user_register');
 });
+Route::post('/registerpost',[ConsumerController::class,'registerpost'])->name('registerpost');
 
 Route::get('/user_login', function () {
     return view('futurenxt/user_login');
@@ -61,12 +63,13 @@ Route::prefix('consumer')->name('consumer')->group(function(){
        // Route::get('register', [UserController::class, 'register'])->name('register');
         Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
        Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
-       Route::post('registerpost', [ConsumerController::class, 'Registerpost'])->name('register.post');
+
     });
     Route::middleware(['auth:consumer'])->group(function () {
     });
 
 });
+
 
 
 

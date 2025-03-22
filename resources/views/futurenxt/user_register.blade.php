@@ -106,7 +106,8 @@
 <body>
     <div class="registration-wrapper">
         <h2 class="registration-header">User Register</h2>
-        <form id="registrationForm" method="POST" action="{{ route('registerpost') }}">@csrf
+        <form id="registrationForm"  action="{{ route('registerpost') }}" method="POST">
+            @csrf
             <div class="registration-field">
                 <label for="first_name">First Name</label>
                 <input type="text" id="first_name" name="first_name" required>
