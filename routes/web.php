@@ -41,14 +41,6 @@ Route::get('/user_login', function () {
     return view('futurenxt/user_login');
 });
 
-Route::get('/partner_register', function () {
-    return view('futurenxt/partner_register');
-});
-
-Route::get('/partner_login', function () {
-    return view('futurenxt/partner_login');
-});
-
 Auth::routes();
 
 Route::prefix('user')->name('user')->group(function(){
@@ -92,11 +84,13 @@ Route::name('seller.')->prefix('seller')->group(function(){
 
 Route::prefix('distributor')->name('distributor')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
-        // Route::get('register', [DistributorController::class, 'register'])->name('user.register');
-        // Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
+        Route::get('register', [DistributorController::class, 'register'])->name('partner.register');
+        Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
         Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
+        Route::get('forgot-password', [DistributorController::class, 'forgot_password'])->name('distributor.forgot-password');
+        Route::post('forgot-password-post', [DistributorController::class, 'forgot_password_post'])->name('distributor.forgot-password-post');
     });
 
     Route::middleware(['auth:distributor'])->group(function () {

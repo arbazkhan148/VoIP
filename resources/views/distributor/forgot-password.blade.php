@@ -44,7 +44,7 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="{{url('/')}}" class="logo d-flex align-items-center w-auto">
+                                <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
                                     <img src="assets/img/logo.png" alt="">
                                     <span class="d-none d-lg-block">Future Next</span>
                                 </a>
@@ -54,51 +54,37 @@
 
                                 <div class="card-body">
 
-                                    <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                    <div class="pt-4 pb-4">
+                                        <h5 class="card-title text-center pb-0 fs-4">Forgot Password</h5>
                                     </div>
 
                                     @if (session('error'))
-                                        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                                        <div class="alert alert-success alert-dismissible fade show text-center"
+                                            role="alert">
                                             {{ session('error') }}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                 aria-label="Close"></button>
                                         </div>
                                     @endif
 
-                                    <form class="row g-3" method="POST" action="{{ url('distributor/loginPost') }}">
+                                    <form class="row g-3" method="POST"
+                                        action="{{ url('distributor/forgot-password-post') }}">
                                         @csrf
 
-                                        <div class="col-12">
+                                        <div class="col-12 py-2">
                                             <label for="email" class="form-label">Email</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                                 <input type="email" name="email" class="form-control" id="email"
-                                                    required>
+                                                    placeholder="Enter your registered email">
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control"
-                                                id="yourPassword" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                            <button class="btn btn-primary w-100" type="submit">Send Changing
+                                                Link</button>
                                         </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                    value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Remember me</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <span><a href="{{ url('distributor/forgot-password') }}">Forgot
-                                                    Password?</a></span>
-                                        </div>
+                                        <a class="text-center" href="{{ url('/') }}">Go To Home</a>
                                     </form>
 
                                 </div>

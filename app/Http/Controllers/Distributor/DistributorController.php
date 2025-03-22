@@ -13,6 +13,30 @@ use Mail;
 
 class DistributorController extends Controller
 {
+    public function register(){
+        return view('futurenxt/partner_register');
+    }
+
+    public function registerPOST(Request $request){
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email|unique:distributors',
+            'password' => 'required',
+            'confirm-password' => 'required|same:password',
+        ]);
+
+        Distributor::create([
+            // dd ($request->all()),
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+        ]);
+        return redirect('distributor/login')->with('success', 'Consumer Registered Successfully');
+    }
 
     public function login(){
         return view('distributor.login');
@@ -44,6 +68,10 @@ class DistributorController extends Controller
         return redirect('distributor/login');
     }
 
+    public function forgot_password(){
+        return view('distributor.forgot-password');
+    }
+
     public function showProfile(){
     $user = Auth::user();
     return view('distributor/profile', compact('user'));
@@ -51,23 +79,21 @@ class DistributorController extends Controller
 
      public function updateProfile(Request $request)
      {
-        $user = Auth::user(); // Get logged-in user
+        $user = Auth::user();
 
-         // Validate input data
         $validatedData = $request->validate([
              'first_name' => 'required|string|max:255',
              'last_name'  => 'required|string|max:255',
              'phone'      => 'required|string|max:20',
-             'email'      => 'required|email|unique:users,email,' . $user->id, // ignore the current user's email
+             'email'      => 'required|email|unique:users,email,' . $user->id,
         ]);
 
-         // Update the user's info
         $user->first_name = $validatedData['first_name'];
         $user->last_name  = $validatedData['last_name'];
         $user->phone      = $validatedData['phone'];
         $user->email      = $validatedData['email'];
 
-        $user->save(); // Save the updated info in the database
+        $user->save();
 
         return redirect()->url('distributor/profile')->with('success', 'Profile updated successfully!');
     }
@@ -79,15 +105,12 @@ class DistributorController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        // Get the currently authenticated distributor
         $distributors = Auth::guard('distributor')->user();
 
-        // Verify current password
         if (!Hash::check($request->current_password, $distributors->password)) {
             return redirect()->back()->with('error', 'Current password is incorrect.');
         }
 
-        // Update the password
         $distributors->password = Hash::make($request->new_password);
         $distributors->save();
 
@@ -107,10 +130,6 @@ class DistributorController extends Controller
         return view('distributor.dashboard',compact('consumers'));
     }
 
-    public function register(){
-        return view('distributor.register');
-    }
-
     public function contact(){
         return view('distributor.contact');
     }
@@ -126,27 +145,6 @@ class DistributorController extends Controller
         $hostings=DistributorPlan::where('user_id',$distributorid)->where('plan_type','Hosting')->where('status','Active')->take(1)->latest()->get();
         return view('distributor.plans',compact('voips','clouds','hostings'));
     }
-
-    // public function registerPOST(Request $request){
-    //     // dd($request->all());
-    //     User::create([
-    //         'first_name'=>$request->first_name,
-    //         'last_name'=>$request->last_name,
-    //         'phone'=>$request->phone,
-    //         'email'=>$request->email,
-    //         'password'=>$request->password,
-    //         'plan_type'=>$request->plan_type,
-    //         'plan_desc'=>$request->plan_desc,
-    //         'custom_input'=>$request->custom_input,
-    //     ]);
-    //     return redirect()->back()->with('success', 'Consumer Registered Successfully');
-    // }
-
-    // public function consumersList(){
-    //     $users = User::orderBy('created_at', 'desc')->get(); // Pull all registered users
-    //     return view('distributor.dashboard', compact('users'));
-
-    // }
 
     public function store(Request $request)
     {
