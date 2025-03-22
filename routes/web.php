@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Consumer\ConsumerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Distributor\DistributorController;
-use App\Http\Controllers\ConsumerController;
+
 use App\Http\Controllers\Futurenxt\FuturenxtController;
 
 
@@ -43,17 +43,32 @@ Route::get('/user_login', function () {
 
 Auth::routes();
 
-Route::prefix('user')->name('user')->group(function(){
+// Route::prefix('user')->name('user')->group(function(){
+//     Route::middleware(['guest:web'])->group(function () {
+//     //     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+//     //    // Route::get('register', [UserController::class, 'register'])->name('register');
+//     //     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+//     //    // Route::get('plan', [UserController::class, 'plan'])->name('user.plan');
+//     // });
+//     Route::middleware(['auth:user'])->group(function () {
+//     });
+
+// });
+
+Route::prefix('consumer')->name('consumer')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
-        Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+        Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
        // Route::get('register', [UserController::class, 'register'])->name('register');
-        Route::get('profile', [UserController::class, 'profile'])->name('profile');
-       // Route::get('plan', [UserController::class, 'plan'])->name('user.plan');
+        Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
+       Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
+       Route::post('registerpost', [ConsumerController::class, 'Registerpost'])->name('register.post');
     });
-    Route::middleware(['auth:user'])->group(function () {
+    Route::middleware(['auth:consumer'])->group(function () {
     });
 
 });
+
+
 
 Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
@@ -105,5 +120,3 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
     });
 });
-
-
