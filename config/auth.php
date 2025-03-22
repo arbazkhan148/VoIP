@@ -27,9 +27,9 @@ return [
         'guard' => env('AUTH_GUARD', 'distributor'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'distributors'),
     ],
-    'futurenxt' => [
+'consumer' => [
         'guard' => env('AUTH_GUARD', 'website'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'futurenxts'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'consumers'),
     ],
 
 
@@ -67,9 +67,9 @@ return [
             'driver' => 'session',
             'provider' => 'distributors',
         ],
-        'futurenxt' => [
+        'consumer' => [
             'driver' => 'session',
-            'provider' => 'futurenxts',
+            'provider' => 'consumers',
         ],
     ],
 
@@ -107,9 +107,9 @@ return [
             'model' => env('AUTH_MODEL', App\Models\Distributor::class),
         ],
 
-        'futurenxts' => [
+        'consumers' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Futurenxt::class),
+            'model' => env('AUTH_MODEL', App\Models\Consumer::class),
         ],
 
 
@@ -159,8 +159,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'futurenxts' => [
-            'provider' => 'futurenxts',
+        'consumers' => [
+            'provider' => 'consumers',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
