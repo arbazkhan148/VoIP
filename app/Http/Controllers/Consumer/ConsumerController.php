@@ -36,10 +36,20 @@ class ConsumerController
             'email'=>$request->email,
             'password'=>$request->password,
 
-            'custom_input'=>$request->custom_input,
+
         ]);
         return redirect()->back()->with('success', 'Consumer Registered Successfully');
     }
+    // public function registerpost(Request $request){
+    //     $requset->validate([
+    //         'first_name'=>'required',
+    //         'last_name'=>'required',
+    //         'phone'=>'required|digits:value',
+    //         'email'=>'required|email',
+    //         'password'=>'required',
 
+    //     ]);
+
+    // }
 
 }

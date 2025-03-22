@@ -37,7 +37,7 @@ Route::get('/hosting', function () {
 Route::get('/user_register', function () {
     return view('futurenxt/user_register');
 });
-Route::post('/registerpost',[ConsumerController::class,'registerpost'])->name('registerpost');
+Route::post('registerpost',[ConsumerController::class,'registerpost'])->name('register.post');
 
 Route::get('/user_login', function () {
     return view('futurenxt/user_login');
