@@ -44,11 +44,6 @@
                                            <td>{{$plan->date}}</td>
                                            <td><span class="">{{$plan->status}}</span></td>
                                            <td><a href="{{route('seller.consumerplansview',[$plan->id])}}">View</a>
-{{--                                               @if($plan->status=="Pending")--}}
-{{--                                                   <form action="{{route('seller.consumerplanapprove',[$plan->id])}}" method="post">@csrf--}}
-{{--                                                       <button class="btn btn-success btn-sm">Approve</button>--}}
-{{--                                                   </form>--}}
-{{--                                              @endif--}}
                                            </td>
                                        </tr>
                                    @endforeach

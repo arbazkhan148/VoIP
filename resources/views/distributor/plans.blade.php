@@ -1,7 +1,6 @@
 @extends('layouts.distributorlayout')
 @section('content')
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>My Plans</h1>
             <nav>
@@ -41,15 +40,33 @@
                             <div class="tab-content pt-2" id="borderedTabJustifiedContent">
                                 <div class="tab-pane fade show active text-center" id="bordered-justified-home"
                                     role="tabpanel" aria-labelledby="home-tab">
+                                    @if(count($voips))
+                                        @foreach($voips as $voip)
+                                            <strong>Plan Type: {{$voip->plan_type}} | Plan Desc: {{$voip->plan_desc}} | Date: {{$voip->date}}</strong>
+                                        @endforeach
+                                    @else
                                     No Active Plans
+                                    @endif
                                 </div>
                                 <div class="tab-pane fade text-center" id="bordered-justified-profile" role="tabpanel"
                                     aria-labelledby="profile-tab">
-                                    No Active Plans
+                                    @if(count($clouds))
+                                        @foreach($clouds as $cloud)
+                                            <strong>Plan Type: {{$cloud->plan_type}} | Plan Desc: {{$cloud->plan_desc}} | Date: {{$cloud->date}}</strong>
+                                        @endforeach
+                                    @else
+                                        No Active Plans
+                                    @endif
                                 </div>
                                 <div class="tab-pane fade text-center" id="bordered-justified-contact" role="tabpanel"
                                     aria-labelledby="contact-tab">
-                                    No Active Plans
+                                    @if(count($hostings))
+                                        @foreach($hostings as $hosting)
+                                            <strong>Plan Type: {{$hosting->plan_type}} | Plan Desc: {{$hosting->plan_desc}} | Date: {{$hosting->date}}</strong>
+                                        @endforeach
+                                    @else
+                                        No Active Plans
+                                    @endif
                                 </div>
                             </div><!-- End Bordered Tabs Justified -->
                         </div>
@@ -153,7 +170,7 @@
 
     </main><!-- End #main -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
 
     <script>
         // Handle the dropdown selections

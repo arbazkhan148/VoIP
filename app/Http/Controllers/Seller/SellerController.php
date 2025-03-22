@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 
 class SellerController extends Controller
@@ -65,7 +66,19 @@ class SellerController extends Controller
         return redirect()->to('seller/profile')->with('success', 'Profile updated successfully!');
     }
     public function dashboard(){
-        return view('seller.dashboard');
+        $total_distributors=Distributor::count();
+        $total_consumers=Consumer::count();
+        $distributorplan=DistributorPlan::where('status','Pending')->latest()->get()->each(function ($value){
+            $distributor=Distributor::where('id',$value->user_id)->first();
+            $value->name=$distributor->first_name.' '.$distributor->last_name;
+            $value->phone=$distributor->phone;
+        });
+        $consumerplan=ConsumerPlan::where('status','Pending')->latest()->get()->each(function ($value){
+            $consumer=Consumer::where('id',$value->consumer_id)->first();
+            $value->name=$consumer->first_name.' '.$consumer->last_name;
+            $value->phone=$consumer->phone;
+        });
+        return view('seller.dashboard',compact('total_distributors','total_consumers','distributorplan','consumerplan'));
     }
 
     public function register(){
@@ -179,4 +192,28 @@ class SellerController extends Controller
         $consumerplan->save();
         return back()->with('success','Plan '.$status.' successfully.');
     }
+    public function changePassword(Request $request)
+    {
+        // Validate incoming data
+        // Validate the request fields
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        // Get the currently authenticated distributor
+        $seller = Auth::guard('seller')->user();
+
+        // Verify current password
+        if (!Hash::check($request->current_password, $seller->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect.');
+        }
+
+        // Update the password
+        $seller->password = Hash::make($request->new_password);
+        $seller->save();
+
+        return redirect()->back()->with('success', 'Password updated successfully!');
+    }
+
 }

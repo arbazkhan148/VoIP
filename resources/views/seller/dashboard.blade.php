@@ -23,7 +23,7 @@
                             <div class="card info-card revenue-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Orders</h5>
+                                    <h5 class="card-title">Total Distributors</h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -49,7 +49,7 @@
                                             </svg>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>1,264</h6>
+                                            <h6>{{$total_distributors}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                             <div class="card info-card sales-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Customers</h5>
+                                    <h5 class="card-title">Total Consumers</h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
@@ -70,7 +70,7 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{$total_consumers}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -79,57 +79,84 @@
                         </div><!-- End Distributors Card -->
 
 
-                        <!-- Customers List -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
-
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                                class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-
                                 <div class="card-body">
-                                    <h5 class="card-title">Customers List</h5>
+                                    <h5 class="card-title">Pending Distributor Plan List</h5>
 
                                     <!-- Customers Table-->
                                     <table class="table datatable">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">First Name</th>
-                                            <th scope="col">Last Name</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Plan Type</th>
-                                            <th scope="col">Plan Description</th>
-                                            <th scope="col">Custom Input</th>
-                                            <th scope="col">Registered At</th>
+                                            <th>Sl No.</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Type</th>
+                                            <th>Details</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
-                                        {{-- <tbody>
-                                            @foreach ($users as $index => $user)
-                                                <tr>
-                                                    <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $user->first_name }}</td>
-                                                    <td>{{ $user->last_name }}</td>
-                                                    <td>{{ $user->phone }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ ucfirst($user->plan_type) }}</td>
-                                                    <td>{{ ucfirst(str_replace('_', ' ', $user->plan_desc)) }}</td>
-                                                    <td>{{ $user->custom_input ?? 'N/A' }}</td>
-                                                    <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
-                                                </tr>
-                                            @endforeach --}}
+                                        <tbody>
+                                        @foreach($distributorplan as $plan)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$plan->name}}</td>
+                                                <td>{{$plan->phone}}</td>
+                                                <td>{{$plan->plan_type}}</td>
+                                                <td>{{$plan->plan_desc}}</td>
+                                                <td>{{$plan->date}}</td>
+                                                <td><span class="">{{$plan->status}}</span></td>
+                                                <td>
+                                                    @if($plan->status=="Pending")
+                                                        <form action="{{route('seller.distributorplanapprove',[$plan->id])}}" method="post">@csrf
+                                                            <button class="btn btn-success btn-sm">Approve</button>
+                                                        </form>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <!-- End of Customers Table -->
+                                </div>
 
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pending Consumer Plan List</h5>
+                                    <!-- Customers Table-->
+                                    <table class="table table1 datatable">
+                                        <thead>
+                                        <tr>
+                                            <th>Sl No.</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Type</th>
+                                            <th>Details</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($consumerplan as $plan)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$plan->name}}</td>
+                                                <td>{{$plan->phone}}</td>
+                                                <td>{{$plan->plan_type}}</td>
+                                                <td>{{$plan->plan_desc}}</td>
+                                                <td>{{$plan->date}}</td>
+                                                <td><span class="">{{$plan->status}}</span></td>
+                                                <td><a href="{{route('seller.consumerplansview',[$plan->id])}}">View</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                     <!-- End of Customers Table -->
@@ -148,3 +175,21 @@
 
     </main><!-- End #main -->
 @endsection
+@section('page-js')
+    <script>
+        const dataTable = new simpleDatatables.DataTable(".table", {
+            searchable: true,
+            fixedHeight: true,
+        });
+        const dataTable1 = new simpleDatatables.DataTable(".table1", {
+            searchable: true,
+            fixedHeight: true,
+        })
+    </script>
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
+@endsection
+

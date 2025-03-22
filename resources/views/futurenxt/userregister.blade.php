@@ -101,14 +101,19 @@
             text-decoration: underline;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="registration-wrapper">
         <h2 class="registration-header">User Register</h2>
-        <form id="registrationForm">
+        <form id="registrationForm" method="post" action="userregister_api">@csrf
             <div class="registration-field">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" required>
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="registration-field">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" required>
             </div>
             <div class="registration-field">
                 <label for="email">Email Address</label>
@@ -140,7 +145,26 @@
             if (password !== confirmPassword) {
                 alert("Passwords do not match!");
             } else {
-                alert("Registration successful!");
+
+                var form = $("#registrationForm");
+                var actionUrl = form.attr('action');
+                console.log(form);
+                $.ajax({
+                    type: "POST",
+                    url: actionUrl,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        if(data==0){
+                            alert("Already registered!");
+                        }else{
+                            alert("Registration successful!");
+                        }
+                        location.href='userlogin';
+                    }
+                });
+
+
             }
         });
     </script>

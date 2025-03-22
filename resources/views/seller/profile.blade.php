@@ -38,16 +38,20 @@
                                 <!-- Overview Tab -->
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <h5 class="card-title">Profile Details</h5>
-
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Name</div>
-                                        <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
+                                        <div class="col-lg-3 col-md-4 label">First Name</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->first_name }}</div>
                                     </div>
 
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-3 col-md-4 label">Phone</div>--}}
-{{--                                        <div class="col-lg-9 col-md-8">{{ $user->phone }}</div>--}}
-{{--                                    </div>--}}
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Last Name</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->last_name }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Phone</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->phone }}</div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
@@ -69,22 +73,31 @@
                                         @csrf
                                         @method('PUT')
 
+
                                         <div class="row mb-3">
-                                            <label for="firstName" class="col-md-4 col-lg-3 col-form-label">Name</label>
+                                            <label for="firstName" class="col-md-4 col-lg-3 col-form-label">First
+                                                Name</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="name" type="text" class="form-control" id="firstName"
-                                                       value="{{ old('name', $user->name) }}">
+                                                <input name="first_name" type="text" class="form-control" id="firstName"
+                                                       value="{{ old('first_name', $user->first_name) }}">
                                             </div>
                                         </div>
 
-{{--                                        <div class="row mb-3">--}}
-{{--                                            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>--}}
-{{--                                            <div class="col-md-8 col-lg-9">--}}
-{{--                                                <input name="phone" type="text" class="form-control" id="phone"--}}
-{{--                                                       value="{{ old('phone', $user->phone) }}">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        <div class="row mb-3">
+                                            <label for="lastName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="last_name" type="text" class="form-control" id="lastName"
+                                                       value="{{ old('last_name', $user->last_name) }}">
+                                            </div>
+                                        </div>
 
+                                        <div class="row mb-3">
+                                            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="phone" type="text" class="form-control" id="phone"
+                                                       value="{{ old('phone', $user->phone) }}">
+                                            </div>
+                                        </div>
                                         <div class="row mb-3">
                                             <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
@@ -100,6 +113,61 @@
                                 </div>
 
                                 <!-- Change Password Tab (keep as is or modify as per your logic) -->
+                                <div class="tab-pane fade pt-3" id="profile-change-password">
+
+                                    @if (session('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session('error'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('error') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    <!-- Change Password Form -->
+                                    <form action="{{ url('seller/change-password') }}" method="POST">
+                                        @csrf
+
+                                        <div class="row mb-3">
+                                            <label for="current_password" class="col-md-4 col-lg-3 col-form-label">Current
+                                                Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="current_password" type="password" class="form-control"
+                                                       id="current_password" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="new_password" class="col-md-4 col-lg-3 col-form-label">New
+                                                Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="new_password" type="password" class="form-control"
+                                                       id="new_password" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="new_password_confirmation"
+                                                   class="col-md-4 col-lg-3 col-form-label">Confirm New Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="new_password_confirmation" type="password"
+                                                       class="form-control" id="new_password_confirmation" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </div>
+                                    </form>
+
+                                </div>
 
                             </div><!-- End tab content -->
                         </div>

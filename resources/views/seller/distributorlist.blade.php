@@ -27,7 +27,7 @@
                                         <th>Mobile No.</th>
                                         <th>Email</th>
                                         <th>Plan Details</th>
-                                        <th>Status</th>
+{{--                                        <th>Status</th>--}}
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -39,7 +39,7 @@
                                            <td>{{$distributor->phone}}</td>
                                            <td>{{$distributor->email}}</td>
                                            <td><a href="{{route('seller.distributorplandtl',[$distributor->id])}}">View</a></td>
-                                           <td>{{$distributor->status}}</td>
+{{--                                           <td>{{$distributor->status}}</td>--}}
                                            <td>
                                                <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
 {{--                                               <a href="#" class="btn btn-outline-danger btn-sm">Block</a>--}}

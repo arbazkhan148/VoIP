@@ -10,8 +10,10 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->longText('email')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('password')->nullable();
             $table->string('status')->default('Active');
             $table->timestamps();

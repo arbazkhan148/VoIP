@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{User,Distributor,DistributorPlan};
+use App\Models\{Consumer, ConsumerPlan, User, Distributor, DistributorPlan};
 use Hash;
 use Session;
 use DB;
@@ -99,7 +99,15 @@ class DistributorController extends Controller
 
 
     public function dashboard(){
-        return view('distributor.dashboard');
+        $distributorid=Auth::guard('distributor')->id();
+        $consumers=ConsumerPlan::where('assigned_distributor',$distributorid)->latest()->get()->each(function ($value){
+            $consumer=Consumer::where('id',$value->consumer_id)->first();
+            $value->first_name=$consumer->first_name;
+            $value->last_name=$consumer->last_name;
+            $value->phone=$consumer->phone;
+            $value->email=$consumer->email;
+        });
+        return view('distributor.dashboard',compact('consumers'));
     }
 
     public function register(){
@@ -115,7 +123,11 @@ class DistributorController extends Controller
     }
 
     public function plans(){
-        return view('distributor.plans');
+        $distributorid=Auth::guard('distributor')->id();
+        $voips=DistributorPlan::where('user_id',$distributorid)->where('plan_type','VoIP')->where('status','Active')->take(1)->latest()->get();
+        $clouds=DistributorPlan::where('user_id',$distributorid)->where('plan_type','Cloud Storage')->where('status','Active')->take(1)->latest()->get();
+        $hostings=DistributorPlan::where('user_id',$distributorid)->where('plan_type','Hosting')->where('status','Active')->take(1)->latest()->get();
+        return view('distributor.plans',compact('voips','clouds','hostings'));
     }
 
     // public function registerPOST(Request $request){

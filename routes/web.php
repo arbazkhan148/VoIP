@@ -35,6 +35,7 @@ Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['auth:seller'])->group(function () {
         Route::get('profile', [SellerController::class, 'profile'])->name('profile');
         Route::put('profile/update', [SellerController::class, 'updateProfile'])->name('profile.update');
+        Route::post('change-password', [SellerController::class, 'changePassword'])->name('change-password');
         Route::get('distributor/add', [SellerController::class, 'distributoradd'])->name('distributoradd');
         Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
         Route::get('distributor/list', [SellerController::class, 'distributorlist'])->name('distributorlist');
@@ -86,10 +87,11 @@ Route::prefix('futurenxt')->name('futurenxt')->group(function(){
         Route::get('pricing', [FuturenxtController::class, 'pricing'])->name('pricing');
         Route::get('features', [FuturenxtController::class, 'features'])->name('features');
         Route::get('domain', [FuturenxtController::class, 'domain'])->name('domain');
-    });
-    Route::middleware(['auth:futurenxt'])->group(function () {
-    });
 
+        Route::post('userregister_api', [FuturenxtController::class, 'userregister_api'])->name('userregister_api');
+        Route::post('partner_api', [FuturenxtController::class, 'partner_api'])->name('partner_api');
+    });
+    Route::middleware(['auth:futurenxt'])->group(function () {  });
 });
 
 

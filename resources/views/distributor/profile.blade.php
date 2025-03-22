@@ -1,5 +1,4 @@
 @extends('layouts.distributorlayout')
-
 @section('content')
     <main id="main" class="main">
 

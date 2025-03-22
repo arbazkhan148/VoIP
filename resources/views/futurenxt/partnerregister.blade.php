@@ -137,6 +137,7 @@
         document.getElementById("partnerRegistrationForm").addEventListener("submit", function(event) {
             event.preventDefault();
             alert("Partner Registration Successful!");
+            location.href='partnerlogin';
         });
     </script>
 </body>

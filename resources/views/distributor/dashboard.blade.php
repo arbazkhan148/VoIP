@@ -97,43 +97,41 @@
                                     </ul>
                                 </div>
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Customers List</h5>
-
-                                    <!-- Customers Table-->
-                                        <table class="table datatable">
-                                            <thead>
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Consumer List</h5>
+                                            <!-- Customers Table-->
+                                            <table class="table table1 datatable">
+                                                <thead>
                                                 <tr>
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">First Name</th>
-                                                    <th scope="col">Last Name</th>
-                                                    <th scope="col">Phone</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Plan Type</th>
-                                                    <th scope="col">Plan Description</th>
-                                                    <th scope="col">Custom Input</th>
-                                                    <th scope="col">Registered At</th>
+                                                    <th>Sl No.</th>
+                                                    <th>Name</th>
+                                                    <th>Phone</th>
+                                                    <th>Type</th>
+                                                    <th>Details</th>
+                                                    <th>Date</th>
                                                 </tr>
-                                            </thead>
-                                            {{-- <tbody>
-                                                @foreach ($users as $index => $user)
+                                                </thead>
+                                                <tbody>
+                                                @foreach($consumers as $consumer)
                                                     <tr>
-                                                        <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $user->first_name }}</td>
-                                                        <td>{{ $user->last_name }}</td>
-                                                        <td>{{ $user->phone }}</td>
-                                                        <td>{{ $user->email }}</td>
-                                                        <td>{{ ucfirst($user->plan_type) }}</td>
-                                                        <td>{{ ucfirst(str_replace('_', ' ', $user->plan_desc)) }}</td>
-                                                        <td>{{ $user->custom_input ?? 'N/A' }}</td>
-                                                        <td>{{ $user->created_at->format('d M Y, H:i') }}</td>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{$consumer->first_name .' '.$consumer->last_name}}</td>
+                                                        <td>{{$consumer->phone}}</td>
+                                                        <td>{{$consumer->plan_type}}</td>
+                                                        <td>{{$consumer->plan_desc}}</td>
+                                                        <td>{{$consumer->date}}</td>
                                                     </tr>
-                                                @endforeach --}}
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                            <!-- End of Customers Table -->
+                                        </div>
 
-                                            </tbody>
-                                        </table>
-                                        <!-- End of Customers Table -->
-                                </div>
+                                    </div>
+                                </div><!-- End of Customers List -->
+
 
                             </div>
                         </div><!-- End of Customers List -->
