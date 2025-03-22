@@ -147,7 +147,7 @@
                             <div class="col-md-3">Hosting</div>
                             <div class="col-md-3">
                                 <select class="form-select" name="plan_option">
-                                    <option selected disabled>Choose Plan</option>
+                                    <option selected>Choose Plan</option>
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
                                 </select>

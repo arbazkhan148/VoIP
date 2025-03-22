@@ -1,5 +1,3 @@
-{{-- @extends('layouts.futurenxt')
-@section('content') --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +104,7 @@
 <body>
     <div class="registration-wrapper">
         <h2 class="registration-header">User Register</h2>
-        <form  action="{{ route('register.post') }}" method="POST">
+        <form  action="{{ url('consumer/registerPost') }}" method="POST">
             @csrf
             <div class="registration-field">
                 <label for="first_name">First Name</label>
@@ -137,40 +135,7 @@
         </form>
         <p class="login-redirect">Already have an account? <a href="userlogin.html">Login</a></p>
     </div>
-    <script>
-        document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirm-password").value;
-
-            if (password !== confirmPassword) {
-                alert("Passwords do not match!");
-            } else {
-
-                var form = $("#registrationForm");
-                var actionUrl = form.attr('action');
-                console.log(form);
-                $.ajax({
-                    type: "POST",
-                    url: actionUrl,
-                    data: form.serialize(), // serializes the form's elements.
-                    success: function(data)
-                    {
-                        if(data==0){
-                            alert("Already registered!");
-                        }else{
-                            alert("Registration successful!");
-                        }
-                        location.href='userlogin';
-                    }
-                });
-
-
-            }
-        });
-    </script>
 </body>
 </html>
-{{-- @endsection --}}
 
 

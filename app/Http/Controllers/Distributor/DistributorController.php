@@ -35,7 +35,7 @@ class DistributorController extends Controller
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
         ]);
-        return redirect('distributor/login')->with('success', 'Consumer Registered Successfully');
+        return redirect('distributor/login')->with('success', 'Distributor Registered Successfully');
     }
 
     public function login(){
@@ -64,7 +64,7 @@ class DistributorController extends Controller
 
     public function logout(){
         Session::flush();
-        Auth::logout();
+        Auth::guard('distributor')->logout();
         return redirect('distributor/login');
     }
 

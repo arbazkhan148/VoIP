@@ -52,9 +52,10 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-                    </a><!-- End Profile Iamge Icon -->
+                        <i class="bi bi-person-circle"></i>
+                        {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->first_name }}
+                            {{ Auth::user()->last_name }}</span> --}}
+                    </a>
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
@@ -96,7 +97,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ url('consumer/logout') }}">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -130,14 +131,14 @@
             </li><!-- End Active Plans Nav --> --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('consumer/profile')}}">
+                <a class="nav-link collapsed" href="{{ url('consumer/profile') }}">
                     <i class="bi bi-person"></i>
                     <span>Profile</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{url('consumer/contact')}}">
+                <a class="nav-link collapsed" href="{{ url('consumer/contact') }}">
                     <i class="bi bi-envelope"></i>
                     <span>Contact</span>
                 </a>

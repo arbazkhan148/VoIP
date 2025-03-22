@@ -34,11 +34,6 @@ Route::get('/hosting', function () {
     return view('futurenxt/hosting');
 });
 
-Route::get('/user_register', function () {
-    return view('futurenxt/user_register');
-});
-Route::post('registerpost',[ConsumerController::class,'registerpost'])->name('register.post');
-
 Route::get('/user_login', function () {
     return view('futurenxt/user_login');
 });
@@ -59,9 +54,13 @@ Auth::routes();
 
 Route::prefix('consumer')->name('consumer')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
-        Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
-       // Route::get('register', [UserController::class, 'register'])->name('register');
-        Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
+       Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
+       Route::get('register', [ConsumerController::class, 'register'])->name('register');
+       Route::post('registerPost', [ConsumerController::class, 'registerPOST'])->name('consumer.registerPost');
+       Route::get('login', [ConsumerController::class, 'login'])->name('consumer.login');
+       Route::post('loginPost', [ConsumerController::class, 'loginPOST'])->name('consumer.loginPost');
+       Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
+       Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
        Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
 
     });
@@ -69,9 +68,6 @@ Route::prefix('consumer')->name('consumer')->group(function(){
     });
 
 });
-
-
-
 
 Route::name('seller.')->prefix('seller')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
