@@ -21,7 +21,6 @@
                         <!-- Orders Card -->
                         <div class="col-xxl-6 col-md-6">
                             <div class="card info-card revenue-card">
-
                                 <div class="card-body">
                                     <h5 class="card-title">Total Orders</h5>
 
@@ -78,7 +77,6 @@
                             </div>
                         </div><!-- End Distributors Card -->
 
-
                         <!-- Customers List -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
@@ -86,7 +84,7 @@
                                 <div class="col-12">
                                     <div class="card recent-sales overflow-auto">
                                         <div class="card-body">
-                                            <h5 class="card-title">Consumer List</h5>
+                                            <h5 class="card-title">Pending Consumer List</h5>
                                             <!-- Customers Table-->
                                             <table class="table table1 datatable">
                                                 <thead>
@@ -102,7 +100,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($consumers as $consumer)
+                                                    @foreach ($consumersp as $consumer)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $consumer->first_name . ' ' . $consumer->last_name }}</td>
@@ -121,6 +119,42 @@
                                                                     </form>
                                                                 @endif
                                                             </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <!-- End of Customers Table -->
+                                        </div>
+
+                                    </div>
+                                </div><!-- End of Customers List -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Approved Consumer List</h5>
+                                            <!-- Customers Table-->
+                                            <table class="table table1 datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sl No.</th>
+                                                        <th>Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Type</th>
+                                                        <th>Details</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($consumers as $consumer)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $consumer->first_name . ' ' . $consumer->last_name }}</td>
+                                                            <td>{{ $consumer->phone }}</td>
+                                                            <td>{{ $consumer->plan_type }}</td>
+                                                            <td>{{ $consumer->plan_desc }}</td>
+                                                            <td>{{ $consumer->date }}</td>
+                                                            <td><span class="">{{ $consumer->status }}</span></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

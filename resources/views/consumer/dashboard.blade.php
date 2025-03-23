@@ -1,13 +1,11 @@
 @extends('layouts.userlayout')
 @section('content')
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>User Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('consumer/dashboard') }}">Dashboard</a></li>
-                    {{-- <li class="breadcrumb-item active">Plans</li> --}}
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -19,7 +17,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Active Plans</h5>
-
                             <!-- Bordered Tabs Justified -->
                             <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
                                 <li class="nav-item flex-fill" role="presentation">
@@ -97,8 +94,6 @@
                         </div>
                     </form>
 
-                    <!-- Repeat the same for Cloud Storage and Hosting -->
-
                     <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
                         @csrf
                         <input type="hidden" name="plan_type" value="Cloud Storage">
@@ -167,6 +162,13 @@
                 const target = this.getAttribute('data-target');
                 const input = document.getElementById(`custom-input-${target}`);
 
+                // if (this.value === 'custom') {
+                //     input.classList.remove('d-none');
+                //     this.classList.add('d-none');
+                // } else {
+                //     input.classList.add('d-none');
+                //     this.classList.remove('d-none');
+                // }
                 if (this.value === 'custom') {
                     input.classList.remove('d-none');
                     // Don't hide the select if you still need interaction or Bootstrap functionality.
