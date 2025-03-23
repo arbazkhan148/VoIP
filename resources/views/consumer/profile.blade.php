@@ -70,7 +70,7 @@
                                         </div>
                                     @endif
 
-                                    <form action="{{ url('distributor/profile/update') }}" method="POST">
+                                    <form action="{{ url('consumer/profile/update') }}" method="POST">
                                         @csrf
                                         @method('PUT')
 

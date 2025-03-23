@@ -120,5 +120,49 @@ class ConsumerController
     public function forgotpassword(){
         return view('consumer.forgot-password');
     }
+    public function updateProfile(Request $request)
+    {
+       $user = Auth::user();
+
+       $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'phone'      => 'required|string|max:20',
+            'email'      => 'required|email|unique:users,email,' . $user->id,
+       ]);
+
+       $user->first_name = $validatedData['first_name'];
+       $user->last_name  = $validatedData['last_name'];
+       $user->phone      = $validatedData['phone'];
+       $user->email      = $validatedData['email'];
+
+       $user->save();
+       return redirect()->back()->with('success', 'Profile updated successfully!');
+
+
+   }
+
+    public function store(Request $request)
+    {
+        // Validate request
+        $request->validate([
+            'plan_type' => 'required|string',
+            'plan_desc' => 'nullable|string',
+            'custom_value' => 'nullable|string',
+        ]);
+
+        // If custom is selected, use the custom value instead of plan_desc
+        $planDesc = ($request->plan_desc === 'custom') ? $request->custom_value : $request->plan_desc;
+
+        // Insert into database
+        ConsumerPlan::create([
+            'user_id' => auth()->id(), // Assuming user is logged in
+            'plan_type' => $request->plan_type,
+            'plan_desc' => $planDesc,
+            'custom_value' => $request->custom_value,
+        ]);
+
+        return redirect()->back()->with('success', 'Plan purchased successfully!');
+    }
 
 }

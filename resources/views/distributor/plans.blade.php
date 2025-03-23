@@ -107,7 +107,7 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-voip"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in Minutes)">
                             </div>
 
                             <div class="col-md-3">
@@ -134,7 +134,7 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-cloud"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
                             </div>
 
                             <div class="col-md-3">
@@ -160,7 +160,7 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-hosting"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
                             </div>
 
                             <div class="col-md-3">
