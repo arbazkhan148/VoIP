@@ -49,7 +49,7 @@
                                             </svg>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{$totalorders}}</h6>
+                                            <h6>1,264</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{$totalconsumers}}</h6>
+                                            <h6>145</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -111,6 +111,8 @@
                                                     <th>Type</th>
                                                     <th>Details</th>
                                                     <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -122,6 +124,14 @@
                                                         <td>{{$consumer->plan_type}}</td>
                                                         <td>{{$consumer->plan_desc}}</td>
                                                         <td>{{$consumer->date}}</td>
+                                                        <td><span class="">{{$plan->status}}</span></td>
+                                                        <td>
+                                                            @if($plan->status=="Pending")
+                                                                <form action="{{route('distributor.planapprove',[$plan->id])}}" method="post">@csrf
+                                                                    <button class="btn btn-success btn-sm">Approve</button>
+                                                                </form>
+                                                           @endif
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
