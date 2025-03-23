@@ -99,5 +99,26 @@ class ConsumerController
     public function contact(){
         return view('consumer.contact');
     }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        $consumer = Auth::guard('consumer')->user();
+
+        if (!Hash::check($request->current_password, $consumer->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect.');
+        }
+
+        $consumer->password = Hash::make($request->new_password);
+        $consumer->save();
+
+        return redirect()->back()->with('success', 'Password updated successfully!');
+    }
+    public function forgotpassword(){
+        return view('consumer.forgot-password');
+    }
 
 }

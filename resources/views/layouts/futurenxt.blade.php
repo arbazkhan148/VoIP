@@ -234,41 +234,45 @@
     <header class="top-navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{('futurenxt/index')}}">
                     <img src="{{ asset('assets/images/futurenxt.png') }}" alt=""
                         style="max-height: 100px; width: 140px;" />
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbars-host">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/about_us')}}">About Us</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="features.html">Features </a></li> -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a"
                                 data-toggle="dropdown">Products</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="voip.html">VOIP </a>
+                                <a class="dropdown-item" href="{{url('/voip')}}">VOIP </a>
 
-                                <a class="dropdown-item" href="hosting.html">Hosting</a>
+                                <a class="dropdown-item" href="{{url('/hosting')}}">Hosting</a>
 
 
-                                <a class="dropdown-item" href="cloudstorage.html">Cloud Storage </a>
+                                <a class="dropdown-item" href="{{url('/cloud')}}">Cloud Storage </a>
 
                             </div>
                         </li>
                         <!-- <li class="nav-item"><a class="nav-link" href="domain.html">Domain</a></li> -->
                         <!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="touch.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/contact')}}">Contact</a></li>
 
+                        <li class="nav-item"><a class="nav-link" href="{{url('consumer/login')}}">Login</a></li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a"
                                 data-toggle="dropdown">Registration</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="userreg.html">User Registration </a>
+                                <a class="dropdown-item" href="{{url('consumer/register')}}">User Registration </a>
 
                                 <a class="dropdown-item" href="partnerregistration.html">Partner Registration</a>
+
+
+
 
                                 <!--
         <a class="dropdown-item" href="cloudstorage.php">Cloud Storage </a> -->
@@ -316,12 +320,12 @@
                             <h3>Information Link</h3>
                         </div>
                         <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="voip.html">VOIP</a></li>
-                            <li><a href="hosting.html">Hosting</a></li>
-                            <li><a href="cloudstorage.html">Cloud Storage</a></li>
-                            <li><a href="touch.html">Contact</a></li>
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/about_us')}}">About</a></li>
+                            <li><a href="{{url('/voip')}}">VOIP</a></li>
+                            <li><a href="{{url('/hosting')}}">Hosting</a></li>
+                            <li><a href="{{url('/cloud')}}">Cloud Storage</a></li>
+                            <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
                 </div><!-- end col -->

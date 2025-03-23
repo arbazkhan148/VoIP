@@ -131,9 +131,9 @@
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
             <button type="submit" class="register-button">Register</button>
-            <button type="button" class="home-button" onclick="location.href='index.html'">Go to Home</button>
+            <button type="button" class="home-button" onclick="location.href={{url('/')}}">Go to Home</button>
         </form>
-        <p class="login-redirect">Already have an account? <a href="userlogin.html">Login</a></p>
+        <p class="login-redirect">Already have an account? <a href="{{url('consumer/login')}}">Login</a></p>
     </div>
 </body>
 </html>
