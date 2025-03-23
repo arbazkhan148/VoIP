@@ -120,6 +120,27 @@ class ConsumerController
     public function forgotpassword(){
         return view('consumer.forgot-password');
     }
+    public function updateProfile(Request $request)
+    {
+       $user = Auth::user();
+
+       $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'phone'      => 'required|string|max:20',
+            'email'      => 'required|email|unique:users,email,' . $user->id,
+       ]);
+
+       $user->first_name = $validatedData['first_name'];
+       $user->last_name  = $validatedData['last_name'];
+       $user->phone      = $validatedData['phone'];
+       $user->email      = $validatedData['email'];
+
+       $user->save();
+       return redirect()->back()->with('success', 'Profile updated successfully!');
+
+
+   }
 
     public function store(Request $request)
     {

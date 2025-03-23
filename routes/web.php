@@ -69,6 +69,7 @@ Route::prefix('consumer')->name('consumer')->group(function(){
        Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
        Route::post('buy-plan', [ConsumerController::class, 'store'])->name('buy.plan');
        Route::get('profile', [ConsumerController::class, 'showProfile'])->name('consumer.profile');
+       Route::put('profile/update', [ConsumerController::class, 'updateProfile'])->name('profile.update');
        Route::post('change-password', [ConsumerController::class, 'changePassword'])->name('consumer.change-password');
 
     });
