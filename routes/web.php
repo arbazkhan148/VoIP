@@ -117,5 +117,6 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::get('profile', [DistributorController::class, 'showProfile'])->name('distributor.profile');
         Route::put('profile/update', [DistributorController::class, 'updateProfile'])->name('profile.update');
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
+        // Route::post('consumer/plandetails/{id}/approve', [DistributorController::class, 'planapprove'])->name('planapprove');
     });
 });
