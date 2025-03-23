@@ -41,7 +41,7 @@
                                            <td><a href="{{route('seller.distributorplandtl',[$distributor->id])}}">View</a></td>
 {{--                                           <td>{{$distributor->status}}</td>--}}
                                            <td>
-                                               <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
+                                               <a href="{{route('seller.distributoredit',[$distributor->id])}}" class="btn btn-outline-info btn-sm">Edit</a>
 {{--                                               <a href="#" class="btn btn-outline-danger btn-sm">Block</a>--}}
                                            </td>
                                        </tr>
@@ -66,4 +66,9 @@
     fixedHeight: true,
     })
     </script>
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
 @endsection

@@ -89,12 +89,17 @@ Route::name('seller.')->prefix('seller')->group(function(){
         Route::get('dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
         Route::get('distributor/list', [SellerController::class, 'distributorlist'])->name('distributorlist');
         Route::post('distributor/store', [SellerController::class, 'distributorstore'])->name('distributorstore');
+        Route::get('distributor/edit/{id}', [SellerController::class, 'distributoredit'])->name('distributoredit');
+        Route::post('distributor/update/{id}', [SellerController::class, 'distributorupdate'])->name('distributorupdate');
         Route::get('distributor/plandetails/{id}', [SellerController::class, 'distributorplandtl'])->name('distributorplandtl');
         Route::post('distributor/plandetails/{id}/approve', [SellerController::class, 'distributorplanapprove'])->name('distributorplanapprove');
+        Route::post('distributor/plandetails/{id}/reject', [SellerController::class, 'distributorplanreject'])->name('distributorplanreject');
         Route::get('distributorplans/list', [SellerController::class, 'distributorplanslist'])->name('distributorplanslist');
         Route::get('consumer/list', [SellerController::class, 'consumerlist'])->name('consumerlist');
         Route::get('consumer/add', [SellerController::class, 'consumeradd'])->name('consumeradd');
         Route::post('consumer/store', [SellerController::class, 'consumerstore'])->name('consumerstore');
+        Route::get('consumer/edit/{id}', [SellerController::class, 'consumeredit'])->name('consumeredit');
+        Route::post('consumer/update/{id}', [SellerController::class, 'consumerupdate'])->name('consumerupdate');
         Route::get('consumer/plandetails/{id}', [SellerController::class, 'consumerplandtl'])->name('consumerplandtl');
         Route::post('consumer/plandetails/{id}/approve', [SellerController::class, 'consumerplanapprove'])->name('consumerplanapprove');
         Route::get('consumerplans/list', [SellerController::class, 'consumerplanslist'])->name('consumerplanslist');

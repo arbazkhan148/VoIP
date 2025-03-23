@@ -53,6 +53,11 @@
                                                        <button class="btn btn-success btn-sm">Approve</button>
                                                    </form>
                                               @endif
+                                                   @if($plan->status=="Pending")
+                                                       <form action="{{route('seller.distributorplanreject',[$plan->id])}}" method="post">@csrf
+                                                           <button class="btn btn-danger btn-sm mt-1">Reject</button>
+                                                       </form>
+                                                   @endif
                                            </td>
                                        </tr>
                                    @endforeach

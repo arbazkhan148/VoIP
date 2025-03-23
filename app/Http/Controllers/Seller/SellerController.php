@@ -116,6 +116,17 @@ class SellerController extends Controller
 //        ]);
         return redirect()->route('seller.distributorlist')->with('success','Distributor added successfully.');
     }
+    public function distributoredit($id){
+        $distributor=Distributor::where('id',$id)->first();
+        return view('seller.distributoredit',compact('distributor'));
+    }
+    public function distributorupdate(Request $request,$id){
+        $request->validate([
+            'email'=>'required|unique:distributors,email,' . $id,
+        ]);
+        $distributor=Distributor::where('id',$id)->update(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email]);
+        return redirect()->route('seller.distributorlist')->with('success','Distributor updated successfully.');
+    }
     public function distributorplandtl($id){
         $distributor=Distributor::where('id',$id)->first();
         $distributorplan=DistributorPlan::where('user_id',$id)->latest()->get();
@@ -126,6 +137,12 @@ class SellerController extends Controller
         $distributorplan->status="Active";
         $distributorplan->save();
         return back()->with('success','Plan Approved successfully.');
+    }
+    public function distributorplanreject($id){
+        $distributorplan=DistributorPlan::where('id',$id)->first();
+        $distributorplan->status="Reject";
+        $distributorplan->save();
+        return back()->with('success','Plan Rejected successfully.');
     }
     public function distributorplanslist(){
         $distributorplan=DistributorPlan::where('status','Pending')->latest()->get()->each(function ($value){
@@ -157,6 +174,17 @@ class SellerController extends Controller
 //            'assigned_distributor'=>$request->assigned_distributor,
 //        ]);
         return redirect()->route('seller.consumerlist')->with('success','Consumer added successfully.');
+    }
+    public function consumeredit($id){
+        $consumer=Consumer::where('id',$id)->first();
+        return view('seller.consumeredit',compact('consumer'));
+    }
+    public function consumerupdate(Request $request,$id){
+        $request->validate([
+            'email'=>'required|unique:consumers,email,' . $id,
+        ]);
+        $consumer=Consumer::where('id',$id)->update(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email]);
+        return redirect()->route('seller.consumerlist')->with('success','Consumer updated successfully.');
     }
     public function consumerplandtl($id){
         $consumer=Consumer::where('id',$id)->first();
