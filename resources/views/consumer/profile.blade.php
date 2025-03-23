@@ -141,6 +141,9 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="current_password" type="password" class="form-control"
                                                     id="current_password" required>
+                                                @error('password')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -150,6 +153,9 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="new_password" type="password" class="form-control"
                                                     id="new_password" required>
+                                                @error('new_password')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 

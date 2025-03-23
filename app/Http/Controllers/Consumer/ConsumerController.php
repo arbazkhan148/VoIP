@@ -71,11 +71,9 @@ class ConsumerController
     return redirect('consumer/login');
     }
 
-
     public function forgot_password(){
         return view('consumer.forgot-password');
     }
-
 
     public function dashboard(){
         return view('consumer.dashboard');

@@ -44,7 +44,7 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="{{url('/')}}" class="logo d-flex align-items-center w-auto">
+                                <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
                                     <img src="assets/img/logo.png" alt="">
                                     <span class="d-none d-lg-block">Future Next</span>
                                 </a>
@@ -59,7 +59,8 @@
                                     </div>
 
                                     @if (session('error'))
-                                        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                                        <div class="alert alert-success alert-dismissible fade show text-center"
+                                            role="alert">
                                             {{ session('error') }}
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                 aria-label="Close"></button>
@@ -75,6 +76,9 @@
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                                 <input type="email" name="email" class="form-control" id="email"
                                                     required>
+                                                @error('email')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -82,6 +86,9 @@
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control"
                                                 id="yourPassword" required>
+                                            @error('password')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
 

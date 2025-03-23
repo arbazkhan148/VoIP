@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Next</title>
-     <link rel="shortcut icon" href="{{asset('images/favicon.jpg')}}" type="image/x-icon" />
-    <link rel="stylesheet" href="{{asset('images/styles.css')}}">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.jpg') }}" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ asset('images/styles.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -21,9 +22,17 @@
         }
 
         @keyframes backgroundAnimation {
-            0% { background: linear-gradient(135deg, #f3f8ff, #e1effe); }
-            50% { background: linear-gradient(135deg, #e6f7ff, #e0f2ff); }
-            100% { background: linear-gradient(135deg, #e1effe, #d0ecff); }
+            0% {
+                background: linear-gradient(135deg, #f3f8ff, #e1effe);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #e6f7ff, #e0f2ff);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #e1effe, #d0ecff);
+            }
         }
 
         .registration-wrapper {
@@ -64,7 +73,8 @@
             font-size: 14px;
         }
 
-        .register-button, .home-button {
+        .register-button,
+        .home-button {
             background: #004080;
             color: #ffffff;
             padding: 12px;
@@ -78,7 +88,8 @@
             margin-top: 10px;
         }
 
-        .register-button:hover, .home-button:hover {
+        .register-button:hover,
+        .home-button:hover {
             background: #002147;
             transform: scale(1.05);
         }
@@ -99,43 +110,62 @@
             text-decoration: underline;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="registration-wrapper">
         <h2 class="registration-header">User Register</h2>
-        <form  action="{{ url('consumer/registerPost') }}" method="POST">
+        <form action="{{ url('consumer/registerPost') }}" method="POST">
             @csrf
             <div class="registration-field">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" required>
+                <input type="text" id="first_name" name="first_name">
+                @error('first_name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="registration-field">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" required>
+                <input type="text" id="last_name" name="last_name">
+                @error('last_name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="registration-field">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="phone">
+                @error('phone')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="registration-field">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email">
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="registration-field">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+                @error('password')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="registration-field">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <input type="password" id="confirm-password" name="confirm-password">
+                @error('password')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <button type="submit" class="register-button">Register</button>
-            <button type="button" class="home-button" onclick="location.href={{url('/')}}">Go to Home</button>
+            <button type="button" class="home-button" onclick="location.href={{ url('/') }}">Go to Home</button>
         </form>
-        <p class="login-redirect">Already have an account? <a href="{{url('consumer/login')}}">Login</a></p>
+        <p class="login-redirect">Already have an account? <a href="{{ url('consumer/login') }}">Login</a></p>
     </div>
 </body>
+
 </html>
-
-
