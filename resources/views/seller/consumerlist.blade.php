@@ -41,7 +41,7 @@
                                             <td><a href="{{route('seller.consumerplandtl',[$consumer->id])}}">View</a></td>
 {{--                                            <td>{{$consumer->status}}</td>--}}
                                             <td>
-                                                <a href="#" class="btn btn-outline-info btn-sm">Edit</a>
+                                                <a href="{{route('seller.consumeredit',[$consumer->id])}}" class="btn btn-outline-info btn-sm">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -65,4 +65,9 @@
     fixedHeight: true,
     })
     </script>
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
 @endsection

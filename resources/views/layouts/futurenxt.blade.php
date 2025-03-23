@@ -261,24 +261,26 @@
                         <!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="{{url('/contact')}}">Contact</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="{{url('consumer/login')}}">Login</a></li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a"
-                                data-toggle="dropdown">Registration</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="{{url('consumer/register')}}">User Registration </a>
-
-                                <a class="dropdown-item" href="partnerregistration.html">Partner Registration</a>
 
 
 
 
-                                <!--
-        <a class="dropdown-item" href="cloudstorage.php">Cloud Storage </a> -->
 
-                            </div>
-                        </li>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Account
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{url('consumer/login')}}">Login</a></li>
+                              <li><a class="dropdown-item" href="{{('consumer/register')}}">Register</a></li>
+                              <li><a class="dropdown-item" href="{{('distributor/register')}}">Become a <br>Partner</a></li>
+                            </ul>
+                          </div>
+
+
+
+
+
 
 
 
