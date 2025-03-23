@@ -130,5 +130,7 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
         Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
         Route::post('consumer/plans/{id}/approve', [DistributorController::class, 'planapprove'])->name('cplanapprove');
+        Route::get('consumer/list', [DistributorController::class, 'consumerlist'])->name('consumerlist');
+        Route::get('consumer/dplandetails/{id}', [DistributorController::class, 'consumerplandtl'])->name('distributor.dconsumerplandtl');
     });
 });

@@ -75,7 +75,7 @@ class SellerController extends Controller
             $value->phone=$distributor->phone;
         });
         $consumerplan=ConsumerPlan::where('status','Pending')->latest()->get()->each(function ($value){
-            $consumer=Consumer::where('id',$value->consumer_id)->first();
+            $consumer=Consumer::where('id',$value->user_id)->first();
             $value->name=$consumer->first_name.' '.$consumer->last_name;
             $value->phone=$consumer->phone;
         });
@@ -188,7 +188,7 @@ class SellerController extends Controller
     }
     public function consumerplandtl($id){
         $consumer=Consumer::where('id',$id)->first();
-        $consumerplan=ConsumerPlan::where('consumer_id',$id)->latest()->get()->each(function ($value){
+        $consumerplan=ConsumerPlan::where('user_id',$id)->latest()->get()->each(function ($value){
             if(!empty($value->assigned_distributor)){
                 $distributor=Distributor::where('id',$value->assigned_distributor)->first();
                 $value->distributor=$distributor->first_name.' '.$distributor->last_name."(".$distributor->phone.")";
@@ -198,7 +198,7 @@ class SellerController extends Controller
     }
     public function consumerplanslist(){
         $consumerplan=ConsumerPlan::where('status','Pending')->latest()->get()->each(function ($value){
-            $consumer=Consumer::where('id',$value->consumer_id)->first();
+            $consumer=Consumer::where('id',$value->user_id)->first();
             $value->name=$consumer->first_name.' '.$consumer->last_name;
             $value->phone=$consumer->phone;
         });
@@ -206,7 +206,7 @@ class SellerController extends Controller
     }
     public function consumerplansview($id){
         $consumerplan=ConsumerPlan::where('id',$id)->first();
-        $consumer=Consumer::where('id',$consumerplan->consumer_id)->first();
+        $consumer=Consumer::where('id',$consumerplan->user_id)->first();
         $distributors=Distributor::where('status','Approved')->get();
         return view('seller.consumerplanview',compact('consumer','consumerplan','distributors'));
     }

@@ -10,17 +10,16 @@ return new class extends Migration
     {
         Schema::create('consumer_plans', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('plan_type');
+            $table->string('user_id')->nullable();
+            $table->string('plan_type')->nullable();
             $table->string('plan_desc')->nullable();
-            $table->string('custom_value')->nullable();
-            $table->date('date')->default(date('Y-m-d'));
+            $table->date('date')->nullable();
             $table->string('status')->default('Pending');
+            $table->string('status1')->default('Pending');
+            $table->string('assigned_distributor')->nullable();
             $table->timestamps();
         });
-
     }
-
     public function down(): void
     {
         Schema::dropIfExists('consumer_plans');

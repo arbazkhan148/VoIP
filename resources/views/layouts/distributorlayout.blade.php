@@ -119,6 +119,14 @@
             </li><!-- End Active Plans Nav -->
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->is('distributor/consumer/list') ? 'active' : '' }}"
+                   href="{{ url('distributor/consumer/list') }}">
+                    <i class="bi bi-pencil-square"></i>
+                    <span>Consumer List</span>
+                </a>
+            </li><!-- End Active Plans Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed {{ request()->is('distributor/profile') ? 'active' : '' }}"
                     href="{{ url('distributor/profile') }}">
                     <i class="bi bi-person"></i>
