@@ -28,7 +28,6 @@ class DistributorController extends Controller
         ]);
 
         Distributor::create([
-            // dd ($request->all()),
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'phone'=>$request->phone,

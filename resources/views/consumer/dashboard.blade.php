@@ -70,66 +70,69 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
+
                     <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
                         @csrf
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">VoIP</div>
-                        <div class="col-md-6 d-flex">
-                            <!-- Flex container -->
-                            <select class="form-select plan-select me-2 flex-grow-1" data-target="voip">
-                                <option selected>Choose Plan</option>
-                                <option>1000 Mins</option>
-                                <option>5000 Mins</option>
-                                <option value="custom">Custom</option>
-                            </select>
-                            <input type="text" id="custom-input-voip"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in Minutes)">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-3">VoIP</div>
+                            <div class="col-md-6 d-flex">
+                                <!-- Flex container -->
+                                <select class="form-select plan-select me-2 flex-grow-1" data-target="voip">
+                                    <option selected>Choose Plan</option>
+                                    <option>1000 Mins</option>
+                                    <option>5000 Mins</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                                <input type="text" id="custom-input-voip"
+                                    class="form-control custom-input d-none flex-grow-1"
+                                    placeholder="Enter Custom Value (in Minutes)">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary w-100" type="submit">Buy Now</button>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary w-100">Buy Now</button>
-                        </div>
-                    </div>
 
-                    <!-- Second Row: Cloud Storage -->
-                    <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
-                        @csrf
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">Cloud Storage</div>
-                        <div class="col-md-6 d-flex">
-                            <select class="form-select plan-select me-2 flex-grow-1" data-target="cloud">
-                                <option selected>Choose Plan</option>
-                                <option>500 GB</option>
-                                <option>1 TB</option>
-                                <option value="custom">Custom</option>
-                            </select>
-                            <input type="text" id="custom-input-cloud"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary w-100">Buy Now</button>
-                        </div>
-                    </div>
+                        <!-- Second Row: Cloud Storage -->
+                        <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+                            @csrf
+                            <div class="row align-items-center mb-3">
+                                <div class="col-md-3">Cloud Storage</div>
+                                <div class="col-md-6 d-flex">
+                                    <select class="form-select plan-select me-2 flex-grow-1" data-target="cloud">
+                                        <option selected>Choose Plan</option>
+                                        <option>500 GB</option>
+                                        <option>1 TB</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                    <input type="text" id="custom-input-cloud"
+                                        class="form-control custom-input d-none flex-grow-1"
+                                        placeholder="Enter Custom Value (in GB)">
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary w-100" type="submit">Buy Now</button>
+                                </div>
+                            </div>
 
-                    <!-- Third Row: Hosting -->
-                    <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
-                        @csrf
-                    <div class="row align-items-center mb-3">
-                        <div class="col-md-3">Hosting</div>
-                        <div class="col-md-6 d-flex">
-                            <select class="form-select plan-select me-2 flex-grow-1" data-target="hosting">
-                                <option selected>Choose Plan</option>
-                                <option>500 GB</option>
-                                <option>1 TB</option>
-                                <option value="custom">Custom</option>
-                            </select>
-                            <input type="text" id="custom-input-hosting"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary w-100">Buy Now</button>
-                        </div>
-                    </div>
-
+                            <!-- Third Row: Hosting -->
+                            <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+                                @csrf
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-md-3">Hosting</div>
+                                    <div class="col-md-6 d-flex">
+                                        <select class="form-select plan-select me-2 flex-grow-1" data-target="hosting">
+                                            <option selected>Choose Plan</option>
+                                            <option>500 GB</option>
+                                            <option>1 TB</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                        <input type="text" id="custom-input-hosting"
+                                            class="form-control custom-input d-none flex-grow-1"
+                                            placeholder="Enter Custom Value (in GB)">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary w-100" type="submit">Buy Now</button>
+                                    </div>
+                                </div>
                 </div>
             </div>
         </section>

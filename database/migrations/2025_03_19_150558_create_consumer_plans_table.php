@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('status')->default('Pending');
             $table->timestamps();
         });
+
     }
+
     public function down(): void
     {
         Schema::dropIfExists('consumer_plans');

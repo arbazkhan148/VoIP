@@ -94,8 +94,6 @@ class ConsumerController
     return view('consumer.profile', compact('user'));
     }
 
-
-
     public function contact(){
         return view('consumer.contact');
     }
@@ -120,6 +118,7 @@ class ConsumerController
     public function forgotpassword(){
         return view('consumer.forgot-password');
     }
+
     public function updateProfile(Request $request)
     {
        $user = Auth::user();
@@ -138,28 +137,27 @@ class ConsumerController
 
        $user->save();
        return redirect()->back()->with('success', 'Profile updated successfully!');
-
-
    }
 
-    public function store(Request $request)
+    public function buyPlan(Request $request)
     {
-        // Validate request
-        $request->validate([
-            'plan_type' => 'required|string',
-            'plan_desc' => 'nullable|string',
-            'custom_value' => 'nullable|string',
+        $validatedData = $request->validate([
+            'plan_type'   => 'required|string|max:255',
+            'plan_desc'   => 'nullable|string|max:255',
+            'custom_value'=> 'nullable|string|max:255',
         ]);
 
-        // If custom is selected, use the custom value instead of plan_desc
-        $planDesc = ($request->plan_desc === 'custom') ? $request->custom_value : $request->plan_desc;
+        // Determine the final plan description (custom overrides)
+        $finalPlanDesc = $validatedData['plan_desc'] === 'custom'
+            ? strtoupper($validatedData['custom_value']) // custom_value in uppercase
+            : $validatedData['plan_desc'];
 
-        // Insert into database
+        // Save to consumer_plans table
         ConsumerPlan::create([
-            'user_id' => auth()->id(), // Assuming user is logged in
-            'plan_type' => $request->plan_type,
-            'plan_desc' => $planDesc,
-            'custom_value' => $request->custom_value,
+            'user_id'      => Auth::id(), // Current logged-in consumer
+            'plan_type'    => $validatedData['plan_type'],
+            'plan_desc'    => $finalPlanDesc,
+            'custom_value' => $validatedData['plan_desc'] === 'custom' ? strtoupper($validatedData['custom_value']) : null,
         ]);
 
         return redirect()->back()->with('success', 'Plan purchased successfully!');
