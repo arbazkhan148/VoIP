@@ -110,11 +110,11 @@
                                                             <td>{{ $consumer->plan_type }}</td>
                                                             <td>{{ $consumer->plan_desc }}</td>
                                                             <td>{{ $consumer->date }}</td>
-                                                            <td><span class="">{{ $plan->status }}</span></td>
+                                                            <td><span class="">{{ $consumer->status1 }}</span></td>
                                                             <td>
-                                                                @if ($plan->status == 'Pending')
+                                                                @if ($consumer->status1 == 'Pending')
                                                                     <form
-                                                                        action="{{ route('distributor.planapprove', [$plan->id]) }}"
+                                                                        action="{{ url('distributor/consumer/plans/'.$consumer->id.'/approve') }}"
                                                                         method="post">@csrf
                                                                         <button
                                                                             class="btn btn-success btn-sm">Approve</button>
