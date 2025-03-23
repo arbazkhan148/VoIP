@@ -132,7 +132,7 @@
                                     @endif
 
                                     <!-- Change Password Form -->
-                                    <form action="{{ url('distributor/change-password') }}" method="POST">
+                                    <form action="{{ url('consumer/change-password') }}" method="POST">
                                         @csrf
 
                                         <div class="row mb-3">

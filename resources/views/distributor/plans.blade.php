@@ -90,12 +90,25 @@
                         </div>
                     @endif
 
+<<<<<<< HEAD
                     <!-- Example Row for VoIP -->
                     <form action="{{ url('distributor/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+=======
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-3">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+
+                    <!-- VoIP Plan Form -->
+                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                         @csrf
                         <input type="hidden" name="plan_type" value="VoIP">
                         <div class="row align-items-center">
                             <div class="col-md-3">VoIP</div>
+<<<<<<< HEAD
 
                             <div class="col-md-6 d-flex">
                                 <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
@@ -104,6 +117,13 @@
                                     <option value="1000 Mins">1000 Mins</option>
                                     <option value="5000 Mins">5000 Mins</option>
                                     <option value="custom">Custom</option>
+=======
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option" id="voipplan">
+                                    <option selected >Choose Plan</option>
+                                    <option value="1000 Minutes">1000 Minutes</option>
+                                    <option value="5000 Minutes">5000 Minutes</option>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-voip"
@@ -111,7 +131,16 @@
                             </div>
 
                             <div class="col-md-3">
+<<<<<<< HEAD
                                 <button type="submit" class="btn btn-primary w-100">Buy Now</button>
+=======
+                                <input type="text" class="form-control" name="custom_value"
+                                    placeholder="Enter Custom Value (in Minutes)" id="voipcustom">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="VoIP">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                             </div>
                         </div>
                     </form>
@@ -123,11 +152,17 @@
                         <input type="hidden" name="plan_type" value="Cloud Storage">
                         <div class="row align-items-center">
                             <div class="col-md-3">Cloud Storage</div>
+<<<<<<< HEAD
 
                             <div class="col-md-6 d-flex">
                                 <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
                                     data-target="cloud">
                                     <option selected disabled>Choose Plan</option>
+=======
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option" id="cloudplan">
+                                    <option selected >Choose Plan</option>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
                                     <option value="custom">Custom</option>
@@ -138,7 +173,16 @@
                             </div>
 
                             <div class="col-md-3">
+<<<<<<< HEAD
                                 <button type="submit" class="btn btn-primary w-100">Buy Now</button>
+=======
+                                <input type="text" class="form-control" name="custom_value" id="cloudcustom"
+                                    placeholder="Enter Custom Value (in GB/TB)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="Cloud Storage">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                             </div>
                         </div>
                     </form>
@@ -149,11 +193,17 @@
                         <input type="hidden" name="plan_type" value="Hosting">
                         <div class="row align-items-center">
                             <div class="col-md-3">Hosting</div>
+<<<<<<< HEAD
 
                             <div class="col-md-6 d-flex">
                                 <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
                                     data-target="hosting">
                                     <option selected disabled>Choose Plan</option>
+=======
+                            <div class="col-md-3">
+                                <select class="form-select" name="plan_option" id="hostingplan">
+                                    <option selected>Choose Plan</option>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
                                     <option value="custom">Custom</option>
@@ -164,7 +214,16 @@
                             </div>
 
                             <div class="col-md-3">
+<<<<<<< HEAD
                                 <button type="submit" class="btn btn-primary w-100">Buy Now</button>
+=======
+                                <input type="text" class="form-control" name="custom_value" id="hostingcustom"
+                                    placeholder="Enter Custom Value (in GB/TB)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" name="plan_type" value="Hosting">
+                                <button type="submit" class="btn btn-primary">Buy Now</button>
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
                             </div>
                         </div>
                     </form>
@@ -174,6 +233,9 @@
         </section>
 
     </main><!-- End #main -->
+
+{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
 
     <script>
         // Show/Hide custom input on select change
@@ -186,6 +248,7 @@
                     input.classList.remove('d-none');
                     this.classList.add('d-none');
                 } else {
+<<<<<<< HEAD
                     input.classList.add('d-none');
                     this.classList.remove('d-none');
                 }
@@ -197,6 +260,23 @@
             input.addEventListener('input', function() {
                 this.value = this.value.toUpperCase();
             });
+=======
+                    // alert(`You selected ${value} (${type})`);
+                }
+            });
+        });
+        $('#voipplan').on('change',function (){
+            if($(this).val()=="Choose Plan"){$("#voipcustom").removeAttr('disabled');
+            }else{ $("#voipcustom").attr('disabled','true'); }
+        });
+        $('#cloudplan').on('change',function (){
+            if($(this).val()=="Choose Plan"){$("#cloudcustom").removeAttr('disabled');
+            }else{ $("#cloudcustom").attr('disabled','true'); }
+        });
+        $('#hostingplan').on('change',function (){
+            if($(this).val()=="Choose Plan"){$("#hostingcustom").removeAttr('disabled');
+            }else{ $("#hostingcustom").attr('disabled','true'); }
+>>>>>>> b4d1055805506436d3dd579b539100166826a753
         });
     </script>
 @endsection

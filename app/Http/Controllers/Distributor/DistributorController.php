@@ -176,4 +176,11 @@ class DistributorController extends Controller
 
     public function contactPOST(Request $request){
     }
+    public function planapprove(Request $request,$id){
+        $consumerplan=ConsumerPlan::where('id',$id)->first();
+            $status="Approved";
+        $consumerplan->status1=$status;
+        $consumerplan->save();
+        return back()->with('success','Plan '.$status.' successfully.');
+    }
 }

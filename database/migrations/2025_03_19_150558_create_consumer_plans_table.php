@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('plan_desc')->nullable();
             $table->date('date')->nullable();
             $table->string('status')->default('Pending');
+            $table->string('status1')->default('Pending');
             $table->string('assigned_distributor')->nullable();
             $table->timestamps();
         });
