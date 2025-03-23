@@ -167,13 +167,6 @@
                 const target = this.getAttribute('data-target');
                 const input = document.getElementById(`custom-input-${target}`);
 
-                // if (this.value === 'custom') {
-                //     input.classList.remove('d-none');
-                //     this.classList.add('d-none');
-                // } else {
-                //     input.classList.add('d-none');
-                //     this.classList.remove('d-none');
-                // }
                 if (this.value === 'custom') {
                     input.classList.remove('d-none');
                     // Don't hide the select if you still need interaction or Bootstrap functionality.
