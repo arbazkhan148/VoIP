@@ -49,7 +49,7 @@
                                             </svg>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>1,264</h6>
+                                            <h6>{{$totalorders}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                             <i class="bi bi-person"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{$totalconsumers}}</h6>
                                         </div>
                                     </div>
                                 </div>

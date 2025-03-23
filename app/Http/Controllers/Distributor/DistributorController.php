@@ -127,7 +127,9 @@ class DistributorController extends Controller
             $value->phone=$consumer->phone;
             $value->email=$consumer->email;
         });
-        return view('distributor.dashboard',compact('consumers'));
+        $totalorders=count($consumers);
+        $totalconsumers=count($consumers->unique('consumer_id'));
+        return view('distributor.dashboard',compact('consumers','totalorders','totalconsumers'));
     }
 
     public function contact(){
