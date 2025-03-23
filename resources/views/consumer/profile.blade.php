@@ -46,17 +46,17 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Last Name</div>
-                                        {{-- <div class="col-lg-9 col-md-8">{{ $user->last_name }}</div> --}}
+                                        <div class="col-lg-9 col-md-8">{{ $user->last_name }}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        {{-- <div class="col-lg-9 col-md-8">{{ $user->phone }}</div> --}}
+                                        <div class="col-lg-9 col-md-8">{{ $user->phone }}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
-                                        {{-- <div class="col-lg-9 col-md-8">{{ $user->email }}</div> --}}
+                                        <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                     </div>
 
                                 </div>
@@ -166,9 +166,7 @@
                                             <button type="submit" class="btn btn-primary">Change Password</button>
                                         </div>
                                     </form>
-
                                 </div>
-
 
                             </div><!-- End tab content -->
                         </div>

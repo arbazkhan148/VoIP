@@ -54,17 +54,17 @@ Auth::routes();
 
 Route::prefix('consumer')->name('consumer')->group(function(){
     Route::middleware(['guest:web'])->group(function () {
-       Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
        Route::get('register', [ConsumerController::class, 'register'])->name('register');
        Route::post('registerPost', [ConsumerController::class, 'registerPOST'])->name('consumer.registerPost');
        Route::get('login', [ConsumerController::class, 'login'])->name('consumer.login');
        Route::post('loginPost', [ConsumerController::class, 'loginPOST'])->name('consumer.loginPost');
-       Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
-       Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
-       Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
-
     });
     Route::middleware(['auth:consumer'])->group(function () {
+       Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
+       Route::post('logout', [ConsumerController::class, 'logout'])->name('distributor.logout');
+       Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
+       Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
+       Route::get('profile', [ConsumerController::class, 'showProfile'])->name('consumer.profile');
     });
 
 });
@@ -102,7 +102,6 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('registerPost', [DistributorController::class, 'registerPOST'])->name('distributor.registerPost');
         Route::get('login', [DistributorController::class, 'login'])->name('distributor.login');
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
-        Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
         Route::get('forgot-password', [DistributorController::class, 'forgot_password'])->name('distributor.forgot-password');
         Route::post('forgot-password-post', [DistributorController::class, 'forgot_password_post'])->name('distributor.forgot-password-post');
     });
@@ -117,6 +116,7 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::get('profile', [DistributorController::class, 'showProfile'])->name('distributor.profile');
         Route::put('profile/update', [DistributorController::class, 'updateProfile'])->name('profile.update');
         Route::post('change-password', [DistributorController::class, 'changePassword'])->name('distributor.change-password');
+        Route::get('logout', [DistributorController::class, 'logout'])->name('distributor.logout');
         // Route::post('consumer/plandetails/{id}/approve', [DistributorController::class, 'planapprove'])->name('planapprove');
     });
 });

@@ -65,6 +65,7 @@ class SellerController extends Controller
 
         return redirect()->to('seller/profile')->with('success', 'Profile updated successfully!');
     }
+
     public function dashboard(){
         $total_distributors=Distributor::count();
         $total_consumers=Consumer::count();

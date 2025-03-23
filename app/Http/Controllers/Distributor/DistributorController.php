@@ -62,11 +62,14 @@ class DistributorController extends Controller
             return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
-    public function logout(){
-        Session::flush();
-        Auth::guard('distributor')->logout();
-        return redirect('distributor/login');
+    public function logout(Request $request){
+    Auth::guard('distributor')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('distributor/login');
     }
+
 
     public function forgot_password(){
         return view('distributor.forgot-password');

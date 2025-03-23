@@ -40,7 +40,7 @@ class ConsumerController
     }
 
     public function login(){
-        return view('consumer.login');
+        return view('consumer/login');
     }
 
     public function loginPost(Request $request){
@@ -63,11 +63,14 @@ class ConsumerController
             return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
-    public function logout(){
-        Session::flush();
-        Auth::guard('consumer')->logout();
-        return redirect('consumer/login');
+    public function logout(Request $request){
+    Auth::guard('consumer')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('consumer/login');
     }
+
 
     public function forgot_password(){
         return view('consumer.forgot-password');
@@ -79,9 +82,19 @@ class ConsumerController
     }
 
     public function profile(){
-
-        return view('consumer.profile');
+        return view('consumer/profile');
     }
+
+    public function showProfile(){
+    $user = auth()->guard('consumer')->user(); // Important: use the correct guard!
+    if (!$user) {
+        // User not logged in or invalid guard.
+        return redirect()->url('consumer/login')->with('error', 'Please login first.');
+    }
+    return view('consumer.profile', compact('user'));
+    }
+
+
 
     public function contact(){
         return view('consumer.contact');
