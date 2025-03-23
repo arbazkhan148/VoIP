@@ -75,7 +75,7 @@
                                 <option value="custom">Custom</option>
                             </select>
                             <input type="text" id="custom-input-voip"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in Minutes)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary w-100">Buy Now</button>
@@ -93,7 +93,7 @@
                                 <option value="custom">Custom</option>
                             </select>
                             <input type="text" id="custom-input-cloud"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary w-100">Buy Now</button>
@@ -111,7 +111,7 @@
                                 <option value="custom">Custom</option>
                             </select>
                             <input type="text" id="custom-input-hosting"
-                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-primary w-100">Buy Now</button>
