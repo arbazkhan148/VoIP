@@ -93,22 +93,21 @@
                         </div>
                     @endif
 
-
                     <!-- VoIP Plan Form -->
                     <form method="POST" action="{{ url('distributor/buy-plan') }}">
                         @csrf
                         <div class="row align-items-center mb-3">
                             <div class="col-md-3">VoIP</div>
                             <div class="col-md-3">
-                                <select class="form-select" name="plan_option" id="voipplan">
-                                    <option selected >Choose Plan</option>
+                                <select class="form-select" name="plan_option">
+                                    <option selected disabled>Choose Plan</option>
                                     <option value="1000 Minutes">1000 Minutes</option>
                                     <option value="5000 Minutes">5000 Minutes</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="custom_value"
-                                    placeholder="Enter Custom Value (in Minutes)" id="voipcustom">
+                                    placeholder="Enter Custom Value (in Minutes)">
                             </div>
                             <div class="col-md-3">
                                 <input type="hidden" name="plan_type" value="VoIP">
@@ -123,14 +122,14 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-md-3">Cloud Storage</div>
                             <div class="col-md-3">
-                                <select class="form-select" name="plan_option" id="cloudplan">
-                                    <option selected >Choose Plan</option>
+                                <select class="form-select" name="plan_option">
+                                    <option selected disabled>Choose Plan</option>
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="custom_value" id="cloudcustom"
+                                <input type="text" class="form-control" name="custom_value"
                                     placeholder="Enter Custom Value (in GB/TB)">
                             </div>
                             <div class="col-md-3">
@@ -146,14 +145,14 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-md-3">Hosting</div>
                             <div class="col-md-3">
-                                <select class="form-select" name="plan_option" id="hostingplan">
+                                <select class="form-select" name="plan_option">
                                     <option selected>Choose Plan</option>
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="custom_value" id="hostingcustom"
+                                <input type="text" class="form-control" name="custom_value"
                                     placeholder="Enter Custom Value (in GB/TB)">
                             </div>
                             <div class="col-md-3">
@@ -169,9 +168,6 @@
 
 
     </main><!-- End #main -->
-
-{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
 
     <script>
         // Handle the dropdown selections
@@ -189,21 +185,9 @@
                     // Show the relevant custom input box
                     document.getElementById(`custom-input-${type}`).classList.remove('d-none');
                 } else {
-                    // alert(`You selected ${value} (${type})`);
+                    alert(`You selected ${value} (${type})`);
                 }
             });
-        });
-        $('#voipplan').on('change',function (){
-            if($(this).val()=="Choose Plan"){$("#voipcustom").removeAttr('disabled');
-            }else{ $("#voipcustom").attr('disabled','true'); }
-        });
-        $('#cloudplan').on('change',function (){
-            if($(this).val()=="Choose Plan"){$("#cloudcustom").removeAttr('disabled');
-            }else{ $("#cloudcustom").attr('disabled','true'); }
-        });
-        $('#hostingplan').on('change',function (){
-            if($(this).val()=="Choose Plan"){$("#hostingcustom").removeAttr('disabled');
-            }else{ $("#hostingcustom").attr('disabled','true'); }
         });
     </script>
 @endsection
