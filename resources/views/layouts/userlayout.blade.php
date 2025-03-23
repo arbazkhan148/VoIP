@@ -49,10 +49,10 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0 dropdown-toggle" href="#"
                         data-bs-toggle="dropdown">
                         <i class="bi bi-person-circle"></i>
-                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                        <span class="d-none d-md-block ps-2">
                             {{ auth('consumer')->user()?->first_name }} {{ auth('consumer')->user()?->last_name }}
                         </span>
                     </a>
@@ -61,7 +61,6 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ url('consumer/profile') }}">
                                 <i class="bi bi-person"></i>
@@ -71,31 +70,23 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <form id="logout-form" action="{{ url('consumer/logout') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
-
                             <a class="dropdown-item d-flex align-items-center" href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
-
                         </li>
+                    </ul>
 
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                </li>
+
+                <form id="logout-form" action="{{ url('consumer/logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+            </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
 
             </ul>
         </nav><!-- End Icons Navigation -->
@@ -144,7 +135,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>VM Softech</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Future Next</span></strong>. All Rights Reserved
         </div>
     </footer><!-- End Footer -->
 

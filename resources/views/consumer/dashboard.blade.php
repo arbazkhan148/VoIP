@@ -6,7 +6,7 @@
             <h1>User Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('consumer/dashboard')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('consumer/dashboard') }}">Dashboard</a></li>
                     {{-- <li class="breadcrumb-item active">Plans</li> --}}
                 </ol>
             </nav>
@@ -66,56 +66,58 @@
                     <!-- First Row: VoIP -->
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">VoIP</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
+                        <div class="col-md-6 d-flex">
+                            <!-- Flex container -->
+                            <select class="form-select plan-select me-2 flex-grow-1" data-target="voip">
+                                <option selected>Choose Plan</option>
                                 <option>1000 Mins</option>
                                 <option>5000 Mins</option>
+                                <option value="custom">Custom</option>
                             </select>
+                            <input type="text" id="custom-input-voip"
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-primary w-100">Buy Now</button>
                         </div>
                     </div>
 
                     <!-- Second Row: Cloud Storage -->
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">Cloud Storage</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
+                        <div class="col-md-6 d-flex">
+                            <select class="form-select plan-select me-2 flex-grow-1" data-target="cloud">
+                                <option selected>Choose Plan</option>
                                 <option>500 GB</option>
                                 <option>1 TB</option>
+                                <option value="custom">Custom</option>
                             </select>
+                            <input type="text" id="custom-input-cloud"
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-primary w-100">Buy Now</button>
                         </div>
                     </div>
 
                     <!-- Third Row: Hosting -->
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">Hosting</div>
-                        <div class="col-md-3">
-                            <select class="form-select">
-                                <option selected disabled>Choose Plan</option>
+                        <div class="col-md-6 d-flex">
+                            <select class="form-select plan-select me-2 flex-grow-1" data-target="hosting">
+                                <option selected>Choose Plan</option>
                                 <option>500 GB</option>
                                 <option>1 TB</option>
+                                <option value="custom">Custom</option>
                             </select>
+                            <input type="text" id="custom-input-hosting"
+                                class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Enter Custom Value">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-primary w-100">Buy Now</button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -125,23 +127,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Handle the dropdown selections
-        document.querySelectorAll('.dropdown-menu a').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
+        // Show/Hide custom input on select change
+        document.querySelectorAll('.plan-select').forEach(function(select) {
+            select.addEventListener('change', function() {
+                const target = this.getAttribute('data-target');
+                const input = document.getElementById(`custom-input-${target}`);
 
-                const type = this.getAttribute('data-type');
-                const value = this.getAttribute('data-value');
-
-                // Hide all custom inputs first
-                document.querySelectorAll('.custom-input').forEach(input => input.classList.add('d-none'));
-
-                if (value === 'custom') {
-                    // Show the relevant custom input box
-                    document.getElementById(`custom-input-${type}`).classList.remove('d-none');
+                if (this.value === 'custom') {
+                    input.classList.remove('d-none');
+                    this.classList.add('d-none');
                 } else {
-                    alert(`You selected ${value} (${type})`);
+                    input.classList.add('d-none');
+                    this.classList.remove('d-none');
                 }
+            });
+        });
+
+        // Convert input text to uppercase
+        document.querySelectorAll('.custom-input').forEach(function(input) {
+            input.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
             });
         });
     </script>

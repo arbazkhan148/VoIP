@@ -153,27 +153,25 @@ class DistributorController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        // Validate request
+        $request->validate([
             'plan_type' => 'required|string',
-            'plan_option' => 'nullable|string',
+            'plan_desc' => 'nullable|string',
             'custom_value' => 'nullable|string',
         ]);
 
-        // Prefer custom value if present, else use plan option
-        $selectedPlan = $validated['custom_value'] ?: $validated['plan_option'];
+        // If custom is selected, use the custom value instead of plan_desc
+        $planDesc = ($request->plan_desc === 'custom') ? $request->custom_value : $request->plan_desc;
 
-        if (!$selectedPlan) {
-            return back()->with('error', 'Please select a plan or enter a custom value.');
-        }
-
-        // Save to database (optional)
+        // Insert into database
         DistributorPlan::create([
-            'user_id' => auth()->id(), // if user is logged in
-            'plan_type' => $validated['plan_type'],
-            'plan_desc' => $selectedPlan,
+            'user_id' => auth()->id(), // Assuming user is logged in
+            'plan_type' => $request->plan_type,
+            'plan_desc' => $planDesc,
+            'custom_value' => $request->custom_value,
         ]);
 
-        return back()->with('success', "{$validated['plan_type']} plan purchased successfully! You chose: {$selectedPlan}");
+        return redirect()->back()->with('success', 'Plan purchased successfully!');
     }
 
     public function contactPOST(Request $request){

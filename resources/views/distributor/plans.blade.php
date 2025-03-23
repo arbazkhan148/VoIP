@@ -40,19 +40,21 @@
                             <div class="tab-content pt-2" id="borderedTabJustifiedContent">
                                 <div class="tab-pane fade show active text-center" id="bordered-justified-home"
                                     role="tabpanel" aria-labelledby="home-tab">
-                                    @if(count($voips))
-                                        @foreach($voips as $voip)
-                                            <strong>Plan Type: {{$voip->plan_type}} | Plan Desc: {{$voip->plan_desc}} | Date: {{$voip->date}}</strong>
+                                    @if (count($voips))
+                                        @foreach ($voips as $voip)
+                                            <strong>Plan Type: {{ $voip->plan_type }} | Plan Desc: {{ $voip->plan_desc }} |
+                                                Date: {{ $voip->date }}</strong>
                                         @endforeach
                                     @else
-                                    No Active Plans
+                                        No Active Plans
                                     @endif
                                 </div>
                                 <div class="tab-pane fade text-center" id="bordered-justified-profile" role="tabpanel"
                                     aria-labelledby="profile-tab">
-                                    @if(count($clouds))
-                                        @foreach($clouds as $cloud)
-                                            <strong>Plan Type: {{$cloud->plan_type}} | Plan Desc: {{$cloud->plan_desc}} | Date: {{$cloud->date}}</strong>
+                                    @if (count($clouds))
+                                        @foreach ($clouds as $cloud)
+                                            <strong>Plan Type: {{ $cloud->plan_type }} | Plan Desc: {{ $cloud->plan_desc }}
+                                                | Date: {{ $cloud->date }}</strong>
                                         @endforeach
                                     @else
                                         No Active Plans
@@ -60,9 +62,10 @@
                                 </div>
                                 <div class="tab-pane fade text-center" id="bordered-justified-contact" role="tabpanel"
                                     aria-labelledby="contact-tab">
-                                    @if(count($hostings))
-                                        @foreach($hostings as $hosting)
-                                            <strong>Plan Type: {{$hosting->plan_type}} | Plan Desc: {{$hosting->plan_desc}} | Date: {{$hosting->date}}</strong>
+                                    @if (count($hostings))
+                                        @foreach ($hostings as $hosting)
+                                            <strong>Plan Type: {{ $hosting->plan_type }} | Plan Desc:
+                                                {{ $hosting->plan_desc }} | Date: {{ $hosting->date }}</strong>
                                         @endforeach
                                     @else
                                         No Active Plans
@@ -87,77 +90,81 @@
                         </div>
                     @endif
 
-                    @if (session('error'))
-                        <div class="alert alert-danger mt-3">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    <!-- VoIP Plan Form -->
-                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                    <!-- Example Row for VoIP -->
+                    <form action="{{ url('distributor/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
                         @csrf
-                        <div class="row align-items-center mb-3">
+                        <input type="hidden" name="plan_type" value="VoIP">
+                        <div class="row align-items-center">
                             <div class="col-md-3">VoIP</div>
-                            <div class="col-md-3">
-                                <select class="form-select" name="plan_option">
+
+                            <div class="col-md-6 d-flex">
+                                <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
+                                    data-target="voip">
                                     <option selected disabled>Choose Plan</option>
-                                    <option value="1000 Minutes">1000 Minutes</option>
-                                    <option value="5000 Minutes">5000 Minutes</option>
+                                    <option value="1000 Mins">1000 Mins</option>
+                                    <option value="5000 Mins">5000 Mins</option>
+                                    <option value="custom">Custom</option>
                                 </select>
+
+                                <input type="text" name="custom_value" id="custom-input-voip"
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                             </div>
+
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="custom_value"
-                                    placeholder="Enter Custom Value (in Minutes)">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="hidden" name="plan_type" value="VoIP">
-                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                                <button type="submit" class="btn btn-primary w-100">Buy Now</button>
                             </div>
                         </div>
                     </form>
 
-                    <!-- Cloud Storage Plan Form -->
-                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                    <!-- Repeat the same for Cloud Storage and Hosting -->
+
+                    <form action="{{ url('distributor/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
                         @csrf
-                        <div class="row align-items-center mb-3">
+                        <input type="hidden" name="plan_type" value="Cloud Storage">
+                        <div class="row align-items-center">
                             <div class="col-md-3">Cloud Storage</div>
-                            <div class="col-md-3">
-                                <select class="form-select" name="plan_option">
+
+                            <div class="col-md-6 d-flex">
+                                <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
+                                    data-target="cloud">
                                     <option selected disabled>Choose Plan</option>
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
+                                    <option value="custom">Custom</option>
                                 </select>
+
+                                <input type="text" name="custom_value" id="custom-input-cloud"
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                             </div>
+
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="custom_value"
-                                    placeholder="Enter Custom Value (in GB/TB)">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="hidden" name="plan_type" value="Cloud Storage">
-                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                                <button type="submit" class="btn btn-primary w-100">Buy Now</button>
                             </div>
                         </div>
                     </form>
 
-                    <!-- Hosting Plan Form -->
-                    <form method="POST" action="{{ url('distributor/buy-plan') }}">
+                    <!-- Hosting -->
+                    <form action="{{ url('distributor/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
                         @csrf
-                        <div class="row align-items-center mb-3">
+                        <input type="hidden" name="plan_type" value="Hosting">
+                        <div class="row align-items-center">
                             <div class="col-md-3">Hosting</div>
-                            <div class="col-md-3">
-                                <select class="form-select" name="plan_option">
-                                    <option selected>Choose Plan</option>
+
+                            <div class="col-md-6 d-flex">
+                                <select name="plan_desc" class="form-select plan-select me-2 flex-grow-1"
+                                    data-target="hosting">
+                                    <option selected disabled>Choose Plan</option>
                                     <option value="500 GB">500 GB</option>
                                     <option value="1 TB">1 TB</option>
+                                    <option value="custom">Custom</option>
                                 </select>
+
+                                <input type="text" name="custom_value" id="custom-input-hosting"
+                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value">
                             </div>
+
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="custom_value"
-                                    placeholder="Enter Custom Value (in GB/TB)">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="hidden" name="plan_type" value="Hosting">
-                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                                <button type="submit" class="btn btn-primary w-100">Buy Now</button>
                             </div>
                         </div>
                     </form>
@@ -166,27 +173,29 @@
             </div>
         </section>
 
-
     </main><!-- End #main -->
 
     <script>
-        // Handle the dropdown selections
-        document.querySelectorAll('.dropdown-menu a').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
+        // Show/Hide custom input on select change
+        document.querySelectorAll('.plan-select').forEach(function(select) {
+            select.addEventListener('change', function() {
+                const target = this.getAttribute('data-target');
+                const input = document.getElementById(`custom-input-${target}`);
 
-                const type = this.getAttribute('data-type');
-                const value = this.getAttribute('data-value');
-
-                // Hide all custom inputs first
-                document.querySelectorAll('.custom-input').forEach(input => input.classList.add('d-none'));
-
-                if (value === 'custom') {
-                    // Show the relevant custom input box
-                    document.getElementById(`custom-input-${type}`).classList.remove('d-none');
+                if (this.value === 'custom') {
+                    input.classList.remove('d-none');
+                    this.classList.add('d-none');
                 } else {
-                    alert(`You selected ${value} (${type})`);
+                    input.classList.add('d-none');
+                    this.classList.remove('d-none');
                 }
+            });
+        });
+
+        // Convert input text to uppercase
+        document.querySelectorAll('.custom-input').forEach(function(input) {
+            input.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
             });
         });
     </script>
