@@ -121,4 +121,27 @@ class ConsumerController
         return view('consumer.forgot-password');
     }
 
+    public function store(Request $request)
+    {
+        // Validate request
+        $request->validate([
+            'plan_type' => 'required|string',
+            'plan_desc' => 'nullable|string',
+            'custom_value' => 'nullable|string',
+        ]);
+
+        // If custom is selected, use the custom value instead of plan_desc
+        $planDesc = ($request->plan_desc === 'custom') ? $request->custom_value : $request->plan_desc;
+
+        // Insert into database
+        ConsumerPlan::create([
+            'user_id' => auth()->id(), // Assuming user is logged in
+            'plan_type' => $request->plan_type,
+            'plan_desc' => $planDesc,
+            'custom_value' => $request->custom_value,
+        ]);
+
+        return redirect()->back()->with('success', 'Plan purchased successfully!');
+    }
+
 }

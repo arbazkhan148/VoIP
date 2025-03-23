@@ -60,14 +60,17 @@ Route::prefix('consumer')->name('consumer')->group(function(){
        Route::post('loginPost', [ConsumerController::class, 'loginPOST'])->name('consumer.loginPost');
        Route::get('forgot-password', [ConsumerController::class, 'forgotpassword'])->name('consumer.forgot-password');
        Route::post('forgot-password-post', [ConsumerController::class, 'forgot_password_post'])->name('consumer.forgot-password-post');
+
     });
     Route::middleware(['auth:consumer'])->group(function () {
        Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
        Route::post('logout', [ConsumerController::class, 'logout'])->name('distributor.logout');
        Route::get('profile', [ConsumerController::class, 'profile'])->name('profile');
        Route::get('contact', [ConsumerController::class, 'contact'])->name('contact');
+       Route::post('buy-plan', [ConsumerController::class, 'store'])->name('buy.plan');
        Route::get('profile', [ConsumerController::class, 'showProfile'])->name('consumer.profile');
        Route::post('change-password', [ConsumerController::class, 'changePassword'])->name('consumer.change-password');
+
     });
 
 });

@@ -64,6 +64,14 @@
                     <h5 class="card-title">Buy Plans</h5>
 
                     <!-- First Row: VoIP -->
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+                        @csrf
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">VoIP</div>
                         <div class="col-md-6 d-flex">
@@ -83,6 +91,8 @@
                     </div>
 
                     <!-- Second Row: Cloud Storage -->
+                    <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+                        @csrf
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">Cloud Storage</div>
                         <div class="col-md-6 d-flex">
@@ -101,6 +111,8 @@
                     </div>
 
                     <!-- Third Row: Hosting -->
+                    <form action="{{ url('consumer/buy-plan') }}" method="POST" class="buy-plan-form mb-3">
+                        @csrf
                     <div class="row align-items-center mb-3">
                         <div class="col-md-3">Hosting</div>
                         <div class="col-md-6 d-flex">
