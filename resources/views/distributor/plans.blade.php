@@ -107,7 +107,8 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-voip"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in Minutes)">
+                                    class="form-control custom-input d-none flex-grow-1"
+                                    placeholder="Enter Custom Value (in Minutes)">
                             </div>
 
                             <div class="col-md-3">
@@ -134,7 +135,8 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-cloud"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
+                                    class="form-control custom-input d-none flex-grow-1"
+                                    placeholder="Enter Custom Value (in GB)">
                             </div>
 
                             <div class="col-md-3">
@@ -160,7 +162,8 @@
                                 </select>
 
                                 <input type="text" name="custom_value" id="custom-input-hosting"
-                                    class="form-control custom-input d-none flex-grow-1" placeholder="Enter Custom Value (in GB)">
+                                    class="form-control custom-input d-none flex-grow-1"
+                                    placeholder="Enter Custom Value (in GB)">
                             </div>
 
                             <div class="col-md-3">
@@ -182,12 +185,18 @@
                 const target = this.getAttribute('data-target');
                 const input = document.getElementById(`custom-input-${target}`);
 
+                // if (this.value === 'custom') {
+                //     input.classList.remove('d-none');
+                //     this.classList.add('d-none');
+                // } else {
+                //     input.classList.add('d-none');
+                //     this.classList.remove('d-none');
+                // }
                 if (this.value === 'custom') {
                     input.classList.remove('d-none');
-                    this.classList.add('d-none');
+                    // Don't hide the select if you still need interaction or Bootstrap functionality.
                 } else {
                     input.classList.add('d-none');
-                    this.classList.remove('d-none');
                 }
             });
         });
