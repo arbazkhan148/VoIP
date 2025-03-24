@@ -26,9 +26,9 @@ class ConsumerController
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:10|numeric',
             'email' => 'required|email|unique:consumers',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'confirm-password' => 'required|same:password',
         ]);
 
