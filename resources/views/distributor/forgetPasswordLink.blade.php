@@ -41,7 +41,7 @@
                 class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="{{ url('/') }}" class="logo d-flex align-items-center w-auto">
@@ -50,12 +50,10 @@
                                 </a>
                             </div><!-- End Logo -->
 
-                            <div class="card mb-3">
-
+                            <div class="card mb-3" style="width: -webkit-fill-available;">
                                 <div class="card-body">
-
                                     <div class="pt-4 pb-4">
-                                        <h5 class="card-title text-center pb-0 fs-4">Forgot Password</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">Reset Password</h5>
                                     </div>
                                     @if (session('success'))
                                         <div class="alert alert-success alert-dismissible fade show text-center"
@@ -74,24 +72,43 @@
                                         </div>
                                     @endif
 
-                                    <form class="row g-3" method="POST"
-                                        action="{{ url('consumer/forgot-password-post') }}">
+                                    <form action="{{ url('distributor/reset-password') }}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="token" value="{{ $token }}">
+                                        <div class="form-group row">
 
-                                        <div class="col-12 py-2">
-                                            <label for="email" class="form-label">Email</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="email" name="email" class="form-control" id="email"
-                                                    placeholder="Enter your registered email">
+                                            <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+
+                                            <div class="col-md-6">
+                                                <input type="text" id="email_address" class="form-control" name="email" required autofocus>
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @endif
                                             </div>
                                         </div>
-
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Send Changing
-                                                Link</button>
+                                        <div class="form-group row">
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                            <div class="col-md-6">
+                                                <input type="password" id="password" class="form-control" name="password" required autofocus>
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <a class="text-center" href="{{ url('/') }}">Go To Home</a>
+                                        <div class="form-group row">
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                                            <div class="col-md-6">
+                                                <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
+                                                @if ($errors->has('password_confirmation'))
+                                                    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-primary mt-2">
+                                                Reset Password
+                                            </button>
+                                        </div>
                                     </form>
 
                                 </div>

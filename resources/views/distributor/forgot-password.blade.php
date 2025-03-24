@@ -57,7 +57,14 @@
                                     <div class="pt-4 pb-4">
                                         <h5 class="card-title text-center pb-0 fs-4">Forgot Password</h5>
                                     </div>
-
+                                    @if (session('success'))
+                                        <div class="alert alert-success alert-dismissible fade show text-center"
+                                             role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    @endif
                                     @if (session('error'))
                                         <div class="alert alert-success alert-dismissible fade show text-center"
                                             role="alert">

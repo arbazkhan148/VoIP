@@ -55,7 +55,7 @@
                             </div>
                         @endif
 
-                        <form action=" {{ url('distributor/contactPost') }}" method="post">
+                        <form action=" {{ url('consumer/contactPost') }}" method="post">
                             @csrf
 
                             <div class="row gy-4">

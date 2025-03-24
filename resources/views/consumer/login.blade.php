@@ -51,7 +51,14 @@
                             </div><!-- End Logo -->
 
                             <div class="card mb-3">
-
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show text-center"
+                                         role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+                                @endif
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">

@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 
@@ -114,6 +115,9 @@ class SellerController extends Controller
 //            'status'=>'Active',
 //            'date'=>date('Y-m-d'),
 //        ]);
+        Mail::send('emails.distributorRegister', ['distributor'=>$distributor], function ($m) use ($distributor)  {
+            $m->to($distributor->email, 'consumer')->subject('Registration Successfull.!');
+        });
         return redirect()->route('seller.distributorlist')->with('success','Distributor added successfully.');
     }
     public function distributoredit($id){
@@ -173,6 +177,9 @@ class SellerController extends Controller
 //            'date'=>date('Y-m-d'),
 //            'assigned_distributor'=>$request->assigned_distributor,
 //        ]);
+        Mail::send('emails.consumerRegister', ['consumer'=>$consumer], function ($m) use ($consumer)  {
+            $m->to($consumer->email, 'consumer')->subject('Registration Successfull.!');
+        });
         return redirect()->route('seller.consumerlist')->with('success','Consumer added successfully.');
     }
     public function consumeredit($id){

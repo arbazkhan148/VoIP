@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Consumer;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Consumer, ConsumerPlan, User, Distributor, DistributorPlan};
 use Hash;
+use Illuminate\Support\Str;
 use Session;
-use DB;
-use Mail;
 
 class ConsumerController
 {
@@ -28,7 +32,7 @@ class ConsumerController
             'confirm-password' => 'required|same:password',
         ]);
 
-        Consumer::create([
+        $consumer=Consumer::create([
             // dd ($request->all()),
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
@@ -36,7 +40,12 @@ class ConsumerController
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
         ]);
+        Mail::send('emails.consumerRegister', ['consumer'=>$consumer], function ($m) use ($consumer)  {
+            $m->to($consumer->email, 'consumer')->subject('Registration Successfull.!');
+        });
+
         return redirect('consumer/login')->with('success', 'Consumer Registered Successfully');
+
     }
 
     public function login(){
@@ -116,7 +125,49 @@ class ConsumerController
     public function forgotpassword(){
         return view('consumer.forgot-password');
     }
-
+    public function forgot_password_post(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'email' => 'required|email|exists:consumers',
+        ]);
+        $token = Str::random(64);
+        $consumer=Consumer::where('email',$request->email)->first();
+        DB::table('password_reset_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+        $resetlink=url('consumer/reset-password/'.$token);
+        Mail::send('emails.forgotPassword', ['token' => $token,'user'=>$consumer,'resetLink'=>$resetlink], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
+        return back()->with('success', 'We have e-mailed your password reset link!');
+    }
+    public function showResetPasswordForm($token) {
+        return view('consumer.forgetPasswordLink', ['token' => $token]);
+    }
+    public function submitResetPasswordForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:consumers',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        $updatePassword = DB::table('password_reset_tokens')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])
+            ->first();
+        if(!$updatePassword){
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
+        $user = Consumer::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+        DB::table('password_reset_tokens')->where(['email'=> $request->email])->delete();
+        return redirect('consumer/login')->with('success', 'Your password has been changed!');
+    }
     public function updateProfile(Request $request)
     {
        $user = Auth::user();
@@ -160,5 +211,12 @@ class ConsumerController
 
         return redirect()->back()->with('success', 'Plan purchased successfully!');
     }
-
+    public function contactPOST(Request $request)
+    {
+        $data=$request->all();
+        Mail::send('emails.contactEmail', ['contactData'=>$data], function ($m) use ($data)  {
+            $m->to($data['email'], 'consumer')->subject('New Enquiry.!');
+        });
+        return back()->with('success','Enquiry Sent successfully.');
+    }
 }

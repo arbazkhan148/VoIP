@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Distributor;
+use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Consumer, ConsumerPlan, User, Distributor, DistributorPlan};
 use Hash;
+use Illuminate\Support\Str;
 use Session;
 use DB;
-use Mail;
 
 class DistributorController extends Controller
 {
@@ -29,13 +32,16 @@ class DistributorController extends Controller
             'confirm-password' => 'required|same:password',
         ]);
 
-        Distributor::create([
+        $distributor=Distributor::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        Mail::send('emails.distributorRegister', ['distributor'=>$distributor], function ($m) use ($distributor)  {
+            $m->to($distributor->email, 'consumer')->subject('Registration Successfull.!');
+        });
         return redirect('distributor/login')->with('success', 'Distributor Registered Successfully');
     }
 
@@ -175,7 +181,7 @@ class DistributorController extends Controller
         $planDesc = ($request->plan_desc === 'custom') ? $request->custom_value : $request->plan_desc;
 
         // Insert into database
-        DistributorPlan::create([
+        $distributor=DistributorPlan::create([
             'user_id' => auth()->id(), // Assuming user is logged in
             'plan_type' => $request->plan_type,
             'plan_desc' => $planDesc,
@@ -187,6 +193,11 @@ class DistributorController extends Controller
 
     public function contactPOST(Request $request)
     {
+        $data=$request->all();
+        Mail::send('emails.contactEmail', ['contactData'=>$data], function ($m) use ($data)  {
+            $m->to($data['email'], 'consumer')->subject('New Enquiry.!');
+        });
+        return back()->with('success','Enquiry Sent successfully.');
     }
 
     public function planapprove(Request $request, $id)
@@ -220,5 +231,48 @@ class DistributorController extends Controller
             }
         });
         return view('distributor.consumerplans', compact('consumer', 'consumerplan'));
+    }
+    public function forgot_password_post(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'email' => 'required|email|exists:distributors',
+        ]);
+        $token = Str::random(64);
+        $consumer=Distributor::where('email',$request->email)->first();
+        \Illuminate\Support\Facades\DB::table('password_reset_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+        $resetlink=url('distributor/reset-password/'.$token);
+        Mail::send('emails.forgotPassword', ['token' => $token,'user'=>$consumer,'resetLink'=>$resetlink], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Reset Password');
+        });
+        return back()->with('success', 'We have e-mailed your password reset link!');
+    }
+    public function showResetPasswordForm($token) {
+        return view('distributor.forgetPasswordLink', ['token' => $token]);
+    }
+    public function submitResetPasswordForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:distributors',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        $updatePassword = DB::table('password_reset_tokens')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])
+            ->first();
+        if(!$updatePassword){
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
+        $user = Distributor::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+        DB::table('password_reset_tokens')->where(['email'=> $request->email])->delete();
+        return redirect('distributor/login')->with('success', 'Your password has been changed!');
     }
 }

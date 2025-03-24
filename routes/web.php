@@ -3,6 +3,7 @@
 use App\Http\Controllers\Consumer\ConsumerController;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Distributor\DistributorController;
@@ -20,6 +21,13 @@ Route::get('/about_us', function () {
 
 Route::get('/contact', function () {
     return view('futurenxt/contact');
+});
+Route::post('/contactpost', function () {
+    $data=$_POST;
+    Mail::send('emails.contactEmail', ['contactData'=>$data], function ($m) use ($data)  {
+        $m->to($data['email'], 'consumer')->subject('New Enquiry.!');
+    });
+    return back()->with('success','');
 });
 
 Route::get('/voip', function () {
@@ -60,7 +68,8 @@ Route::prefix('consumer')->name('consumer')->group(function(){
        Route::post('loginPost', [ConsumerController::class, 'loginPOST'])->name('consumer.loginPost');
        Route::get('forgot-password', [ConsumerController::class, 'forgotpassword'])->name('consumer.forgot-password');
        Route::post('forgot-password-post', [ConsumerController::class, 'forgot_password_post'])->name('consumer.forgot-password-post');
-
+       Route::get('reset-password/{token}', [ConsumerController::class, 'showResetPasswordForm'])->name('consumer.reset.password.get');
+       Route::post('reset-password', [ConsumerController::class, 'submitResetPasswordForm'])->name('consumer.reset.password.post');
     });
     Route::middleware(['auth:consumer'])->group(function () {
        Route::get('dashboard', [ConsumerController::class, 'dashboard'])->name('dashboard');
@@ -71,6 +80,7 @@ Route::prefix('consumer')->name('consumer')->group(function(){
        Route::get('profile', [ConsumerController::class, 'showProfile'])->name('consumer.profile');
        Route::put('profile/update', [ConsumerController::class, 'updateProfile'])->name('profile.update');
        Route::post('change-password', [ConsumerController::class, 'changePassword'])->name('consumer.change-password');
+        Route::post('contactPost', [ConsumerController::class, 'contactPOST'])->name('consumer.contactPost');
 
     });
 
@@ -116,6 +126,8 @@ Route::prefix('distributor')->name('distributor')->group(function(){
         Route::post('loginPost', [DistributorController::class, 'loginPOST'])->name('distributor.loginPost');
         Route::get('forgot-password', [DistributorController::class, 'forgot_password'])->name('distributor.forgot-password');
         Route::post('forgot-password-post', [DistributorController::class, 'forgot_password_post'])->name('distributor.forgot-password-post');
+        Route::get('reset-password/{token}', [DistributorController::class, 'showResetPasswordForm'])->name('consumer.reset.password.get');
+        Route::post('reset-password', [DistributorController::class, 'submitResetPasswordForm'])->name('consumer.reset.password.post');
     });
 
     Route::middleware(['auth:distributor'])->group(function () {
