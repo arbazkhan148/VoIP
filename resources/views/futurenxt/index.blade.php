@@ -9,7 +9,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-            <div id="home" class="first-section" style="background-image:url{{asset('assets/images/slider-01.jpg')}};">
+            <div id="home" class="first-section" style="background-image:url('images/slider-01.jpg');">
                 <div class="dtab">
                     <div class="container">
                         <div class="row">
@@ -144,7 +144,7 @@
 
                     <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis montes, nascetur ridiculus mus. Sed vitae rutrum neque. </p>
 
-                    <a href="about.php" class="hover-btn-new"><span>Learn More</span></a>
+                    <a href="{{url('/about_us')}}" class="hover-btn-new"><span>Learn More</span></a>
                 </div><!-- end messagebox -->
             </div><!-- end col -->
 
@@ -174,7 +174,7 @@
         <div class="zigzag-content">
             <h2>VOIP Service</h2>
             <p>VOIP (Voice over Internet Protocol) enables communication via the internet, allowing businesses and individuals to make calls over the web rather than traditional phone lines.</p>
-            <button class="btn" onclick="window.location.href='voip.html';">Raed More</button>
+            <button class="btn" onclick="window.location.href='{{url('/voip')}}';">Raed More</button>
         </div>
     </div>
 
@@ -186,7 +186,7 @@
         <div class="zigzag-content">
             <h2>Hosting Service</h2>
             <p>Hosting services provide storage and computing resources to keep websites and applications running smoothly. They ensure website availability and optimal performance 24/7.</p>
-             <button class="btn" onclick="window.location.href='hosting.html';">Explore Hosting</button>
+             <button class="btn" onclick="window.location.href='{{url('/hosting')}}';">Explore Hosting</button>
             <!-- <button class="btn">Explore Hosting</button> -->
         </div>
     </div>
@@ -199,7 +199,7 @@
         <div class="zigzag-content">
             <h2>Cloud Server</h2>
             <p>Cloud servers offer scalable, flexible, and secure computing resources. They help businesses expand their digital infrastructure with minimal maintenance and cost.</p>
-            <button class="btn" onclick="window.location.href='cloudstorage.html';">Discover Cloud</button>
+            <button class="btn" onclick="window.location.href='{{url('/cloud')}}';">Discover Cloud</button>
            <!--  <button class="btn">Discover Cloud</button> -->
         </div>
     </div>

@@ -234,7 +234,7 @@
     <header class="top-navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{('futurenxt/index')}}">
+                <a class="navbar-brand" href="{{('/')}}">
                     <img src="{{ asset('assets/images/futurenxt.png') }}" alt=""
                         style="max-height: 100px; width: 140px;" />
                 </a>
