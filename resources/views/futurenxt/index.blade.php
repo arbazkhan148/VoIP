@@ -174,7 +174,7 @@
         <div class="zigzag-content">
             <h2>VOIP Service</h2>
             <p>VOIP (Voice over Internet Protocol) enables communication via the internet, allowing businesses and individuals to make calls over the web rather than traditional phone lines.</p>
-            <button class="btn" onclick="window.location.href='{{url('/voip')}}';">Raed More</button>
+            <button class="btn" onclick="window.location.href='{{url('/voip')}}';">Read More</button>
         </div>
     </div>
 
