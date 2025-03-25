@@ -73,7 +73,6 @@
                                         @csrf
                                         @method('PUT')
 
-
                                         <div class="row mb-3">
                                             <label for="firstName" class="col-md-4 col-lg-3 col-form-label">First
                                                 Name</label>

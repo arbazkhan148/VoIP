@@ -24,15 +24,7 @@ class SellerController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ],
-            [
-                'email.required' => 'Email is required.',
-                'email.email' => 'Please provide a valid email address.',
-                'email.max' => 'Email cannot exceed 255 characters.',
-                'password.required' => 'Password is required.',
-                'password.min' => 'Password must be at least 8 characters long.',
-                'password.max' => 'Password cannot exceed 20 characters.',
-            ]);
+        ]);
         $credentials = $request->only('email', 'password');
         if (Auth::guard('seller')->attempt($credentials)) {
             return redirect('seller/dashboard');
@@ -45,26 +37,24 @@ class SellerController extends Controller
         Auth::guard('seller')->logout();
         return redirect('seller/login');
     }
+
     public function updateProfile(Request $request)
     {
-        $user = Auth::guard('seller')->user();
-
-        // Validate input data
+        $user = Auth::user();
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-//            'last_name'  => 'required|string|max:255',
-//            'phone'      => 'required|string|max:20',
-            'email'      => 'required|email|unique:users,email,' . $user->id, // ignore the current user's email
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|unique:sellers,email,' . $user->id,
         ]);
 
-        // Update the user's info
-        $user->name = $validatedData['name'];
-//        $user->phone      = $validatedData['phone'];
-        $user->email      = $validatedData['email'];
+        $user->first_name = $validatedData['first_name'];
+        $user->last_name = $validatedData['last_name'];
+        $user->phone = $validatedData['phone'];
+        $user->email = $validatedData['email'];
+        $user->save();
 
-        $user->save(); // Save the updated info in the database
-
-        return redirect()->to('seller/profile')->with('success', 'Profile updated successfully!');
+        return redirect()->back();
     }
 
     public function dashboard(){
@@ -95,35 +85,34 @@ class SellerController extends Controller
         $user = Auth::guard('seller')->user();
         return view('seller.profile',compact('user'));
     }
+
     public function distributorlist(){
         $distributors=Distributor::latest()->get();
         return view('seller.distributorlist',compact('distributors'));
     }
+
     public function distributoradd(){
         return view('seller.distributoradd');
     }
+
     public function distributorstore(Request $request){
         $request->validate([
             'email'=>'required|unique:distributors'
         ]);
         $distributor=Distributor::create(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email,
         'password'=>Hash::make($request->password),'status'=>'Approved']);
-//        DistributorPlan::create([
-//            'user_id'=>$distributor->id,
-//            'plan_type'=>$distributor->plan_type,
-//            'plan_desc'=>$distributor->plan_desc,
-//            'status'=>'Active',
-//            'date'=>date('Y-m-d'),
-//        ]);
+
         Mail::send('emails.distributorRegister', ['distributor'=>$distributor], function ($m) use ($distributor)  {
             $m->to($distributor->email, 'consumer')->subject('Registration Successfull.!');
         });
         return redirect()->route('seller.distributorlist')->with('success','Distributor added successfully.');
     }
+
     public function distributoredit($id){
         $distributor=Distributor::where('id',$id)->first();
         return view('seller.distributoredit',compact('distributor'));
     }
+
     public function distributorupdate(Request $request,$id){
         $request->validate([
             'email'=>'required|unique:distributors,email,' . $id,
@@ -131,23 +120,27 @@ class SellerController extends Controller
         $distributor=Distributor::where('id',$id)->update(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email]);
         return redirect()->route('seller.distributorlist')->with('success','Distributor updated successfully.');
     }
+
     public function distributorplandtl($id){
         $distributor=Distributor::where('id',$id)->first();
         $distributorplan=DistributorPlan::where('user_id',$id)->latest()->get();
         return view('seller.distributorplans',compact('distributor','distributorplan'));
     }
+
     public function distributorplanapprove($id){
         $distributorplan=DistributorPlan::where('id',$id)->first();
         $distributorplan->status="Active";
         $distributorplan->save();
         return back()->with('success','Plan Approved successfully.');
     }
+
     public function distributorplanreject($id){
         $distributorplan=DistributorPlan::where('id',$id)->first();
         $distributorplan->status="Reject";
         $distributorplan->save();
         return back()->with('success','Plan Rejected successfully.');
     }
+
     public function distributorplanslist(){
         $distributorplan=DistributorPlan::where('status','Pending')->latest()->get()->each(function ($value){
             $distributor=Distributor::where('id',$value->user_id)->first();
@@ -156,36 +149,34 @@ class SellerController extends Controller
         });
         return view('seller.distributorplanslist',compact('distributorplan'));
     }
+
     public function consumerlist(){
         $consumers=Consumer::latest()->get();
         return view('seller.consumerlist',compact('consumers'));
     }
+
     public function consumeradd(){
         return view('seller.consumeradd');
     }
+
     public function consumerstore(Request $request){
         $request->validate([
             'email'=>'required|unique:consumers'
         ]);
         $consumer=Consumer::create(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email,
             'password'=>Hash::make($request->password)]);
-//        ConsumerPlan::create([
-//            'consumer_id'=>$consumer->id,
-//            'plan_type'=>$consumer->plan_type,
-//            'plan_desc'=>$consumer->plan_desc,
-//            'status'=>'Active',
-//            'date'=>date('Y-m-d'),
-//            'assigned_distributor'=>$request->assigned_distributor,
-//        ]);
+
         Mail::send('emails.consumerRegister', ['consumer'=>$consumer], function ($m) use ($consumer)  {
             $m->to($consumer->email, 'consumer')->subject('Registration Successfull.!');
         });
         return redirect()->route('seller.consumerlist')->with('success','Consumer added successfully.');
     }
+
     public function consumeredit($id){
         $consumer=Consumer::where('id',$id)->first();
         return view('seller.consumeredit',compact('consumer'));
     }
+
     public function consumerupdate(Request $request,$id){
         $request->validate([
             'email'=>'required|unique:consumers,email,' . $id,
@@ -193,6 +184,7 @@ class SellerController extends Controller
         $consumer=Consumer::where('id',$id)->update(['first_name'=>$request->first_name,'last_name'=>$request->last_name,'phone'=>$request->phone,'email'=>$request->email]);
         return redirect()->route('seller.consumerlist')->with('success','Consumer updated successfully.');
     }
+
     public function consumerplandtl($id){
         $consumer=Consumer::where('id',$id)->first();
         $consumerplan=ConsumerPlan::where('user_id',$id)->latest()->get()->each(function ($value){
@@ -203,6 +195,7 @@ class SellerController extends Controller
         });
         return view('seller.consumerplans',compact('consumer','consumerplan'));
     }
+
     public function consumerplanslist(){
         $consumerplan=ConsumerPlan::where('status','Pending')->latest()->get()->each(function ($value){
             $consumer=Consumer::where('id',$value->user_id)->first();
@@ -211,12 +204,14 @@ class SellerController extends Controller
         });
         return view('seller.consumerplanslist',compact('consumerplan'));
     }
+
     public function consumerplansview($id){
         $consumerplan=ConsumerPlan::where('id',$id)->first();
         $consumer=Consumer::where('id',$consumerplan->user_id)->first();
         $distributors=Distributor::where('status','Approved')->get();
         return view('seller.consumerplanview',compact('consumer','consumerplan','distributors'));
     }
+
     public function consumerplanapprove(Request $request,$id){
         $consumerplan=ConsumerPlan::where('id',$id)->first();
         $status="Rejected";
@@ -228,13 +223,14 @@ class SellerController extends Controller
         $consumerplan->save();
         return back()->with('success','Plan '.$status.' successfully.');
     }
+
     public function changePassword(Request $request)
     {
         // Validate incoming data
         // Validate the request fields
         $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|confirmed',
+            'current_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8|different:current_password',
         ]);
 
         // Get the currently authenticated distributor

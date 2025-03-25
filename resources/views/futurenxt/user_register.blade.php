@@ -121,28 +121,28 @@
             @csrf
             <div class="registration-field">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name">
+                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}">
                 @error('first_name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="registration-field">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name">
+                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}">
                 @error('last_name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="registration-field">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" value="{{ old('phone') }}">
                 @error('phone')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="registration-field">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" value="{{ old('email') }}">
                 @error('email')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

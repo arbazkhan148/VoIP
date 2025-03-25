@@ -26,9 +26,9 @@ class ConsumerController
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required|digits:10|numeric',
-            'email' => 'required|email|unique:consumers',
-            'password' => 'required|min:8',
+            'phone' => 'required|digits:10|numeric|unique:consumers,phone',
+            'email' => 'required|email|unique:distributors',
+            'password' => 'required|min:8|max:20',
             'confirm-password' => 'required|same:password',
         ]);
 
@@ -55,14 +55,6 @@ class ConsumerController
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ],
-        [
-            'email.required' => 'Email is required.',
-            'email.email' => 'Please provide a valid email address.',
-            'email.max' => 'Email cannot exceed 255 characters.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must be at least 8 characters long.',
-            'password.max' => 'Password cannot exceed 20 characters.',
         ]);
             $credentials = $request->only('email', 'password');
             if (Auth::guard('consumer')->attempt($credentials)) {
@@ -103,11 +95,12 @@ class ConsumerController
     public function contact(){
         return view('consumer.contact');
     }
+
     public function changePassword(Request $request)
     {
         $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|confirmed',
+            'current_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8|different:current_password',
         ]);
 
         $consumer = Auth::guard('consumer')->user();
@@ -121,9 +114,11 @@ class ConsumerController
 
         return redirect()->back()->with('success', 'Password updated successfully!');
     }
+
     public function forgotpassword(){
         return view('consumer.forgot-password');
     }
+
     public function forgot_password_post(Request $request): RedirectResponse
     {
         $request->validate([
@@ -143,9 +138,12 @@ class ConsumerController
         });
         return back()->with('success', 'We have e-mailed your password reset link!');
     }
-    public function showResetPasswordForm($token) {
+
+    public function showResetPasswordForm($token)
+    {
         return view('consumer.forgetPasswordLink', ['token' => $token]);
     }
+
     public function submitResetPasswordForm(Request $request)
     {
         $request->validate([
@@ -167,6 +165,7 @@ class ConsumerController
         DB::table('password_reset_tokens')->where(['email'=> $request->email])->delete();
         return redirect('consumer/login')->with('success', 'Your password has been changed!');
     }
+
     public function updateProfile(Request $request)
     {
        $user = Auth::user();
@@ -175,16 +174,16 @@ class ConsumerController
             'first_name' => 'required|string|max:255',
             'last_name'  => 'required|string|max:255',
             'phone'      => 'required|string|max:20',
-            'email'      => 'required|email|unique:users,email,' . $user->id,
+            'email'      => 'required|email|unique:consumers,email,' . $user->id,
        ]);
 
        $user->first_name = $validatedData['first_name'];
        $user->last_name  = $validatedData['last_name'];
        $user->phone      = $validatedData['phone'];
        $user->email      = $validatedData['email'];
-
        $user->save();
-       return redirect()->back()->with('success', 'Profile updated successfully!');
+
+       return redirect()->back();
    }
 
     public function buyPlan(Request $request)

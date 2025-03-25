@@ -26,9 +26,9 @@ class DistributorController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required|digits:10|numeric',
+            'phone' => 'required|digits:10|numeric|unique:distributors,phone',
             'email' => 'required|email|unique:distributors',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|max:20',
             'confirm-password' => 'required|same:password',
         ]);
 
@@ -55,15 +55,7 @@ class DistributorController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ],
-            [
-                'email.required' => 'Email is required.',
-                'email.email' => 'Please provide a valid email address.',
-                'email.max' => 'Email cannot exceed 255 characters.',
-                'password.required' => 'Password is required.',
-                'password.min' => 'Password must be at least 8 characters long.',
-                'password.max' => 'Password cannot exceed 20 characters.',
-            ]);
+        ]);
         $credentials = $request->only('email', 'password');
         if (Auth::guard('distributor')->attempt($credentials)) {
             return redirect('distributor/dashboard');
@@ -104,14 +96,15 @@ class DistributorController extends Controller
         $user->phone = $validatedData['phone'];
         $user->email = $validatedData['email'];
         $user->save();
-        return redirect()->url('distributor/profile')->with('success', 'Profile updated successfully!');
+
+        return redirect()->back();
     }
 
     public function changePassword(Request $request)
     {
         $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|confirmed',
+            'current_password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8|different:current_password',
         ]);
 
         $distributors = Auth::guard('distributor')->user();
@@ -221,6 +214,7 @@ class DistributorController extends Controller
         });
         return view('distributor.consumerlist', compact('consumers'));
     }
+
     public function consumerplandtl($id)
     {
         $consumer = Consumer::where('id', $id)->first();
@@ -232,8 +226,8 @@ class DistributorController extends Controller
         });
         return view('distributor.consumerplans', compact('consumer', 'consumerplan'));
     }
-    public function forgot_password_post(Request $request): RedirectResponse
-    {
+
+    public function forgot_password_post(Request $request): RedirectResponse{
         $request->validate([
             'email' => 'required|email|exists:distributors',
         ]);
@@ -249,13 +243,14 @@ class DistributorController extends Controller
             $message->to($request->email);
             $message->subject('Reset Password');
         });
-        return back()->with('success', 'We have e-mailed your password reset link!');
+        return back()->with('success', 'We have emailed your password reset link!');
     }
+
     public function showResetPasswordForm($token) {
         return view('distributor.forgetPasswordLink', ['token' => $token]);
     }
-    public function submitResetPasswordForm(Request $request)
-    {
+
+    public function submitResetPasswordForm(Request $request){
         $request->validate([
             'email' => 'required|email|exists:distributors',
             'password' => 'required|string|min:6|confirmed',
