@@ -97,7 +97,7 @@ class DistributorController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:distributors,email,' . $user->id,
         ]);
         $user->first_name = $validatedData['first_name'];
         $user->last_name = $validatedData['last_name'];
