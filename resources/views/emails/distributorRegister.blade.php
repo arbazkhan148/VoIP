@@ -43,20 +43,6 @@
                        ">
                         Login to Dashboard
                     </a>
-
-                    <!-- Contact Support Button -->
-                    <a href="{{ url('distributor/contact-support') }}"
-                        style="
-                          background-color: #007BFF;
-                          color: white;
-                          padding: 12px 24px;
-                          text-decoration: none;
-                          border-radius: 4px;
-                          font-weight: bold;
-                          margin-left: 10px;
-                       ">
-                        Contact Support
-                    </a>
                 </div>
             </td>
         </tr>
