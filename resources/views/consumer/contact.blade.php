@@ -70,6 +70,16 @@
                                         required>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <input type="text" name="phone" class="form-control" placeholder="Phone"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="email" class="form-control" placeholder="Email"
+                                        required>
+                                </div>
+
                                 <div class="col-md-12">
                                     <input type="text" class="form-control" name="subject" placeholder="Subject"
                                         required>

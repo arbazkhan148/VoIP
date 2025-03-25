@@ -61,12 +61,22 @@
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                    <input type="text" name="first_name" class="form-control" placeholder="First Name"
                                         required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <input type="text" name="last_name" class="form-control" placeholder="Last Name"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="phone" class="form-control" placeholder="Phone"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="email" class="form-control" placeholder="Email"
                                         required>
                                 </div>
 

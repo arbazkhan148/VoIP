@@ -23,6 +23,8 @@
             <td style="padding: 0 20px 20px 20px;">
                 <p><strong>First Name:</strong> {{ $contactData['first_name'] }}</p>
                 <p><strong>Last Name:</strong> {{ $contactData['last_name'] }}</p>
+                <p><strong>Phone:</strong> {{ $contactData['phone'] }}</p>
+                <p><strong>Email:</strong> {{ $contactData['email'] }}</p>
                 <p><strong>Subject:</strong> {{ $contactData['subject'] }}</p>
                 <p>{{ $contactData['message'] }}</p>
             </td>
