@@ -13,9 +13,10 @@ return new class extends Migration
             $table->string('user_id')->nullable();
             $table->string('plan_type')->nullable();
             $table->string('plan_desc')->nullable();
+            $table->string('custom_value')->nullable();
             $table->date('date')->nullable();
-            $table->string('status')->default('Pending');
-            $table->string('status1')->default('Pending');
+            $table->string('status')->default('Pending')->nullable();
+            $table->string('status1')->default('Pending')->nullable();
             $table->string('assigned_distributor')->nullable();
             $table->timestamps();
         });

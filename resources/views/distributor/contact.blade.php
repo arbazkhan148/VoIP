@@ -65,8 +65,8 @@
                                         required>
                                 </div>
 
-                                <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                <div class="col-md-6">
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name"
                                         required>
                                 </div>
 

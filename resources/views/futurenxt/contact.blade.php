@@ -105,14 +105,11 @@ to {
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Give us more details.."></textarea>
+                    <textarea class="form-control" name="message" id="message" rows="6" placeholder="Give us more details.."></textarea>
                 </div>
                 <div class="text-center pd">
                     <button type="submit" id="submit" class="btn btn-dark btn-radius btn-brd grd1 btn-block">Get a Quote</button>

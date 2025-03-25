@@ -21,10 +21,9 @@
         <!-- Body Content -->
         <tr>
             <td style="padding: 0 20px 20px 20px;">
-                <p><strong>Name:</strong> {{ $contactData['name'] }}</p>
-                <p><strong>Email:</strong> {{ $contactData['email'] }}</p>
+                <p><strong>First Name:</strong> {{ $contactData['first_name'] }}</p>
+                <p><strong>Last Name:</strong> {{ $contactData['last_name'] }}</p>
                 <p><strong>Subject:</strong> {{ $contactData['subject'] }}</p>
-                <p><strong>Message:</strong></p>
                 <p>{{ $contactData['message'] }}</p>
             </td>
         </tr>
