@@ -100,13 +100,7 @@ to {
         <form id="contactform" action="contact.php" name="contactform" method="post">
             <fieldset class="row row-fluid">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email">
