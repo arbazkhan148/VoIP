@@ -189,9 +189,9 @@ class ConsumerController
     public function buyPlan(Request $request)
     {
         $validatedData = $request->validate([
-            'plan_type'   => 'required|string|max:255',
-            'plan_desc'   => 'nullable|string|max:255',
-            'custom_value'=> 'nullable|string|max:255',
+            'plan_type' => 'required|string',
+            'plan_desc' => 'string',
+            'custom_value' => 'string',
         ]);
 
         // Determine the final plan description (custom overrides)

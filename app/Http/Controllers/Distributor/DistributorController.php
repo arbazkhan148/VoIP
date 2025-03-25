@@ -166,8 +166,8 @@ class DistributorController extends Controller
         // Validate request
         $request->validate([
             'plan_type' => 'required|string',
-            'plan_desc' => 'nullable|string',
-            'custom_value' => 'nullable|string',
+            'plan_desc' => 'string',
+            'custom_value' => 'string',
         ]);
 
         // If custom is selected, use the custom value instead of plan_desc
